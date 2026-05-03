@@ -19,7 +19,7 @@ dev = [
 ]
 
 [tool.setuptools]
-py-modules = ["models", "config", "filters", "main"]
+py-modules = ["models", "config", "filters", "state", "main"]
 
 [tool.setuptools.packages.find]
 include = ["scrapers*"]
