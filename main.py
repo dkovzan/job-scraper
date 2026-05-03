@@ -1,8 +1,12 @@
-"""Orchestrator: load config, fetch from each scraper, filter, deliver matches.
+"""Orchestrator: bot tick → scrape → filter → deliver matches.
 
-Phase 3 scope: the default mode pushes matches to Telegram (one message per
-new job per user, per-user cap). ``--dry-run`` keeps the Phase 1 hardcoded
-``ui-ux`` profile as a debug escape hatch — no state writes, no Telegram.
+Default mode runs both halves: first ``bot.tick()`` consumes any pending
+``/subscribe`` etc. commands and updates ``subscriptions.json``, then the
+scrape loop fetches jobs, filters per-user, and pushes matches via Telegram.
+A failure in one half is logged but does not stop the other.
+
+``--dry-run`` keeps the Phase 1 hardcoded ``ui-ux`` profile as a debug escape
+hatch — no bot tick, no state writes, no Telegram.
 """
 
 from __future__ import annotations
@@ -10,12 +14,14 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import os
 import sys
 from collections.abc import Callable
 from pathlib import Path
 
 import httpx
 
+import bot
 import state
 import telegram
 from config import Config, load_config
@@ -195,6 +201,11 @@ def _telegram_sender(client: httpx.Client) -> SendFunc:
     return send
 
 
+def _load_allowed_chats(cfg: Config) -> set[str]:
+    raw = os.environ.get(cfg.telegram.allowed_chats_env, "")
+    return {s.strip() for s in raw.split(",") if s.strip()}
+
+
 def main(argv: list[str] | None = None) -> int:
     args = _parse_args(argv)
     _setup_logging()
@@ -211,13 +222,37 @@ def main(argv: list[str] | None = None) -> int:
     # Real run — fail fast if the bot token is missing before doing any work.
     telegram.get_bot_token()
 
-    all_jobs = _load_from_fixtures() if args.from_fixtures else _scrape_all()
-    if args.from_fixtures:
-        log.info("loaded %d jobs from fixtures", len(all_jobs))
+    state_dir = Path(args.state_dir)
+    allowed_chats = _load_allowed_chats(cfg)
+    if not allowed_chats:
+        log.warning(
+            "%s is empty — bot.tick will only echo chat-ID hints",
+            cfg.telegram.allowed_chats_env,
+        )
 
     with telegram.make_client() as client:
+        # Bot first: a /subscribe sent before this tick should land before we
+        # filter jobs. A bot.tick failure is logged but doesn't kill the scrape.
+        try:
+            bot.tick(
+                state_dir=state_dir,
+                cfg=cfg,
+                allowed_chats=allowed_chats,
+                client=client,
+            )
+        except Exception:
+            log.exception("bot.tick failed — continuing to scrape")
+
+        all_jobs = _load_from_fixtures() if args.from_fixtures else _scrape_all()
+        if args.from_fixtures:
+            log.info("loaded %d jobs from fixtures", len(all_jobs))
+
         return _run_with_subscriptions(
-            all_jobs, cfg, Path(args.state_dir), args.max_per_user, _telegram_sender(client)
+            all_jobs,
+            cfg,
+            state_dir,
+            args.max_per_user,
+            _telegram_sender(client),
         )
 
 
