@@ -1,10 +1,8 @@
 """Orchestrator: load config, fetch from each scraper, filter, deliver matches.
 
-Phase 2 scope: real-run mode reads per-user subscriptions from ``.state/`` and
-dedups against per-user seen-sets. ``--dry-run`` keeps the Phase 1 hardcoded
-``ui-ux`` profile as a debug escape hatch (no state writes).
-
-Output still goes to stdout — Telegram delivery is Phase 3.
+Phase 3 scope: the default mode pushes matches to Telegram (one message per
+new job per user, per-user cap). ``--dry-run`` keeps the Phase 1 hardcoded
+``ui-ux`` profile as a debug escape hatch — no state writes, no Telegram.
 """
 
 from __future__ import annotations
@@ -13,9 +11,13 @@ import argparse
 import json
 import logging
 import sys
+from collections.abc import Callable
 from pathlib import Path
 
+import httpx
+
 import state
+import telegram
 from config import Config, load_config
 from filters import match_job
 from models import Job, Profile
@@ -36,6 +38,10 @@ _UI_UX_KEYWORDS: list[str] = [
     "Designer produktu",
 ]
 
+DEFAULT_MAX_PER_USER = 30
+
+SendFunc = Callable[[str, Job, Profile], bool]
+
 
 def _parse_args(argv: list[str] | None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(prog="job-scraper")
@@ -43,12 +49,18 @@ def _parse_args(argv: list[str] | None) -> argparse.Namespace:
     parser.add_argument(
         "--state-dir",
         default=".state/",
-        help="directory holding subscriptions.json / seen_jobs.json / etc. (default: .state/)",
+        help="directory holding subscriptions.json / seen_jobs.json (default: .state/)",
+    )
+    parser.add_argument(
+        "--max-per-user",
+        type=int,
+        default=DEFAULT_MAX_PER_USER,
+        help=f"cap matches delivered to one user per run (default: {DEFAULT_MAX_PER_USER})",
     )
     parser.add_argument(
         "--dry-run",
         action="store_true",
-        help="bypass subscriptions + state; match against the hardcoded ui-ux profile",
+        help="bypass subscriptions, state, and Telegram; print hardcoded ui-ux matches",
     )
     parser.add_argument(
         "--from-fixtures",
@@ -111,7 +123,34 @@ def _run_dry(all_jobs: list[Job], cfg: Config) -> int:
     return 0
 
 
-def _run_with_subscriptions(all_jobs: list[Job], cfg: Config, state_dir: Path) -> int:
+def _collect_matches_for_user(
+    profiles: list[Profile],
+    all_jobs: list[Job],
+    cfg: Config,
+    existing_seen: list[str],
+) -> list[tuple[Job, Profile]]:
+    """Return ``[(job, matching_profile), ...]`` in scrape order, skipping
+    already-seen IDs and stopping at the first profile that matches per job."""
+    seen_set = set(existing_seen)
+    matches: list[tuple[Job, Profile]] = []
+    for job in all_jobs:
+        if job.id in seen_set:
+            continue
+        matched = next((p for p in profiles if match_job(job, p, cfg.defaults)), None)
+        if matched is None:
+            continue
+        matches.append((job, matched))
+        seen_set.add(job.id)
+    return matches
+
+
+def _run_with_subscriptions(
+    all_jobs: list[Job],
+    cfg: Config,
+    state_dir: Path,
+    max_per_user: int,
+    send: SendFunc,
+) -> int:
     subs_path = state_dir / cfg.state.subscriptions_file
     seen_path = state_dir / cfg.state.seen_file
 
@@ -125,28 +164,35 @@ def _run_with_subscriptions(all_jobs: list[Job], cfg: Config, state_dir: Path) -
 
     sent_total = 0
     for chat_id, profiles in subscriptions.items():
-        seen_list = list(seen.get(chat_id, []))
-        seen_set = set(seen_list)
-        new_for_user: list[tuple[Job, Profile]] = []
-        for job in all_jobs:
-            if job.id in seen_set:
-                continue
-            matched = next((p for p in profiles if match_job(job, p, cfg.defaults)), None)
-            if matched is None:
-                continue
-            new_for_user.append((job, matched))
-            seen_list.append(job.id)
-            seen_set.add(job.id)
+        existing = seen.get(chat_id, [])
+        matches = _collect_matches_for_user(profiles, all_jobs, cfg, existing)
+        log.info("user %s: %d new matches (cap %d)", chat_id, len(matches), max_per_user)
 
-        log.info("user %s: %d new matches", chat_id, len(new_for_user))
-        for job, profile in new_for_user:
-            print(_format_match_line(chat_id, profile, job))
-        sent_total += len(new_for_user)
+        seen_list = list(existing)
+        for i, (job, profile) in enumerate(matches):
+            # All matches are marked seen — even ones beyond the cap, so we
+            # don't keep finding them on every subsequent tick.
+            seen_list.append(job.id)
+            if i >= max_per_user:
+                continue
+            if send(chat_id, job, profile):
+                sent_total += 1
         seen[chat_id] = seen_list
 
     state.save_seen_jobs(seen_path, seen, max_per_user=cfg.state.max_seen_ids)
-    log.info("done: %d notifications, seen sets saved to %s", sent_total, seen_path)
+    log.info("done: %d notifications sent, seen sets saved to %s", sent_total, seen_path)
     return 0
+
+
+def _telegram_sender(client: httpx.Client) -> SendFunc:
+    def send(chat_id: str, job: Job, profile: Profile) -> bool:
+        text = telegram.format_job(job, profile)
+        result = telegram.send_message(chat_id, text, client=client)
+        if not result.ok:
+            log.warning("send failed for chat %s job %s: %s", chat_id, job.id, result.error)
+        return result.ok
+
+    return send
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -156,15 +202,23 @@ def main(argv: list[str] | None = None) -> int:
     cfg = load_config(args.config)
     log.info("loaded config from %s", args.config)
 
-    if args.from_fixtures:
-        all_jobs = _load_from_fixtures()
-        log.info("loaded %d jobs from fixtures", len(all_jobs))
-    else:
-        all_jobs = _scrape_all()
-
     if args.dry_run:
+        all_jobs = _load_from_fixtures() if args.from_fixtures else _scrape_all()
+        if args.from_fixtures:
+            log.info("loaded %d jobs from fixtures", len(all_jobs))
         return _run_dry(all_jobs, cfg)
-    return _run_with_subscriptions(all_jobs, cfg, Path(args.state_dir))
+
+    # Real run — fail fast if the bot token is missing before doing any work.
+    telegram.get_bot_token()
+
+    all_jobs = _load_from_fixtures() if args.from_fixtures else _scrape_all()
+    if args.from_fixtures:
+        log.info("loaded %d jobs from fixtures", len(all_jobs))
+
+    with telegram.make_client() as client:
+        return _run_with_subscriptions(
+            all_jobs, cfg, Path(args.state_dir), args.max_per_user, _telegram_sender(client)
+        )
 
 
 if __name__ == "__main__":
