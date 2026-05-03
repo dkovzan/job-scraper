@@ -10,6 +10,10 @@ requires-python = ">=3.11"
 dependencies = [
     "httpx>=0.27",
     "selectolax>=0.3",
+    # Used by scrapers/theprotocol.py and scrapers/pracuj.py — both sites are
+    # behind Cloudflare's "Just a moment…" challenge, which curl_cffi clears
+    # by sending requests with a real Chrome's TLS fingerprint.
+    "curl_cffi>=0.7",
 ]
 
 [project.optional-dependencies]
