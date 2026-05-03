@@ -1,0 +1,1440 @@
+{
+  "data": [
+    {
+      "guid": "3f9415c6-5e60-4433-85f8-5b1aef1f21b3",
+      "slug": "north-star-junior-product-designer-wroclaw-ux",
+      "title": "Junior Product Designer",
+      "requiredSkills": null,
+      "niceToHaveSkills": null,
+      "workplaceType": "hybrid",
+      "workingTime": "full_time",
+      "experienceLevel": "junior",
+      "employmentTypes": [
+        {
+          "from": 7500,
+          "to": 10500,
+          "currency": "pln",
+          "type": "b2b",
+          "unit": "month",
+          "gross": false,
+          "fromChf": 1618.1925,
+          "fromEur": 1766.49,
+          "fromGbp": 1522.7175,
+          "fromPln": 7500,
+          "fromUsd": 2071.2825,
+          "toChf": 2265.4695,
+          "toEur": 2473.086,
+          "toGbp": 2131.8045,
+          "toPln": 10500,
+          "toUsd": 2899.7955
+        }
+      ],
+      "categoryId": 14,
+      "multilocation": [
+        {
+          "city": "Wrocław",
+          "slug": "north-star-junior-product-designer-wroclaw-ux",
+          "street": "Grodzka 9",
+          "latitude": 51.1144575,
+          "longitude": 17.0357644
+        }
+      ],
+      "city": "Wrocław",
+      "street": "Grodzka 9",
+      "latitude": "51.1144575",
+      "longitude": "17.0357644",
+      "remoteInterview": true,
+      "companyName": "North Star",
+      "companyLogoThumbUrl": "https://imgproxy.justjoinit.tech/nCf9NGBnrZF-74SpHFbcdNkfysCwXlSuaztAhFyEAZ4/h:200/w:200/plain/https://public.justjoin.it/companies/logos/original/b735322c254aecd5c98117a560f4ac33ef6df2e4.png",
+      "publishedAt": "2026-04-03T12:50:07.192Z",
+      "lastPublishedAt": "2026-04-03T12:50:07.192Z",
+      "expiredAt": "2026-05-03T12:50:07.192Z",
+      "openToHireUkrainians": false,
+      "languages": [
+        {
+          "code": "pl",
+          "level": "c2"
+        },
+        {
+          "code": "en",
+          "level": "c2"
+        }
+      ],
+      "applyMethod": "form",
+      "isSuperOffer": false,
+      "promotedPosition": null,
+      "promotedKeyFilters": []
+    },
+    {
+      "guid": "f80ef7ce-9b66-4dd5-af04-4a0198a2715a",
+      "slug": "egala-ux-designer-zerniki-ux",
+      "title": "UX Designer",
+      "requiredSkills": null,
+      "niceToHaveSkills": null,
+      "workplaceType": "office",
+      "workingTime": "full_time",
+      "experienceLevel": "mid",
+      "employmentTypes": [
+        {
+          "from": 10000,
+          "to": 15000,
+          "currency": "pln",
+          "type": "permanent",
+          "unit": "month",
+          "gross": true,
+          "fromChf": 2157.59,
+          "fromEur": 2355.32,
+          "fromGbp": 2030.29,
+          "fromPln": 10000,
+          "fromUsd": 2761.71,
+          "toChf": 3236.385,
+          "toEur": 3532.98,
+          "toGbp": 3045.435,
+          "toPln": 15000,
+          "toUsd": 4142.565
+        },
+        {
+          "from": 7000,
+          "to": 10500,
+          "currency": "pln",
+          "type": "b2b",
+          "unit": "month",
+          "gross": false,
+          "fromChf": 1510.313,
+          "fromEur": 1648.724,
+          "fromGbp": 1421.203,
+          "fromPln": 7000,
+          "fromUsd": 1933.197,
+          "toChf": 2265.4695,
+          "toEur": 2473.086,
+          "toGbp": 2131.8045,
+          "toPln": 10500,
+          "toUsd": 2899.7955
+        }
+      ],
+      "categoryId": 14,
+      "multilocation": [
+        {
+          "city": "Żerniki",
+          "slug": "egala-ux-designer-zerniki-ux",
+          "street": "ul. Stachowska 8",
+          "latitude": 52.3248123,
+          "longitude": 17.0562137
+        }
+      ],
+      "city": "Żerniki",
+      "street": "ul. Stachowska 8",
+      "latitude": "52.3248123",
+      "longitude": "17.0562137",
+      "remoteInterview": true,
+      "companyName": "Egala",
+      "companyLogoThumbUrl": "https://imgproxy.justjoinit.tech/7CCzu45dwGnOOHEa81I192KEyfNDjGoTyfGA_JEgCLI/h:200/w:200/plain/https://s3.eu-west-1.amazonaws.com/images.justjoin.it/justjoinit/company-logos/1759739832_0199b8aae7077ea0b0b5f6733fbe04d3.png",
+      "publishedAt": "2026-04-17T09:03:16.487Z",
+      "lastPublishedAt": "2026-04-17T09:03:16.487Z",
+      "expiredAt": "2026-05-17T09:03:16.487Z",
+      "openToHireUkrainians": true,
+      "languages": [
+        {
+          "code": "en",
+          "level": "c1"
+        },
+        {
+          "code": "pl",
+          "level": "c1"
+        }
+      ],
+      "applyMethod": "external",
+      "isSuperOffer": false,
+      "promotedPosition": null,
+      "promotedKeyFilters": []
+    },
+    {
+      "guid": "47ab3e51-2d9a-4807-89cf-e595c4499ced",
+      "slug": "mynetdiary-inc--senior-product-designer-warszawa-ux",
+      "title": "Senior Product Designer",
+      "requiredSkills": null,
+      "niceToHaveSkills": null,
+      "workplaceType": "remote",
+      "workingTime": "full_time",
+      "experienceLevel": "senior",
+      "employmentTypes": [
+        {
+          "from": 18000,
+          "to": 21000,
+          "currency": "pln",
+          "type": "permanent",
+          "unit": "month",
+          "gross": true,
+          "fromChf": 3883.662,
+          "fromEur": 4239.576,
+          "fromGbp": 3654.522,
+          "fromPln": 18000,
+          "fromUsd": 4971.078,
+          "toChf": 4530.939,
+          "toEur": 4946.172,
+          "toGbp": 4263.609,
+          "toPln": 21000,
+          "toUsd": 5799.591
+        },
+        {
+          "from": 14000,
+          "to": 17000,
+          "currency": "pln",
+          "type": "b2b",
+          "unit": "month",
+          "gross": false,
+          "fromChf": 3020.626,
+          "fromEur": 3297.448,
+          "fromGbp": 2842.406,
+          "fromPln": 14000,
+          "fromUsd": 3866.394,
+          "toChf": 3667.903,
+          "toEur": 4004.044,
+          "toGbp": 3451.493,
+          "toPln": 17000,
+          "toUsd": 4694.907
+        }
+      ],
+      "categoryId": 14,
+      "multilocation": [
+        {
+          "city": "Warszawa",
+          "slug": "mynetdiary-inc--senior-product-designer-warszawa-ux",
+          "street": "Zygmunta Vogla 28",
+          "latitude": 52.1601675,
+          "longitude": 21.0913865
+        }
+      ],
+      "city": "Warszawa",
+      "street": "Zygmunta Vogla 28",
+      "latitude": "52.1601675",
+      "longitude": "21.0913865",
+      "remoteInterview": true,
+      "companyName": "MyNetDiary Inc.",
+      "companyLogoThumbUrl": "https://imgproxy.justjoinit.tech/Aq9qewoQyrVOJ_c3BbRv2xp2sY3Fz3McdwVRZ3rOAvk/h:200/w:200/plain/https://public.justjoin.it/companies/logos/original/32fa3c5791cbc89c68e24e39ea1d771abdfcedea.png",
+      "publishedAt": "2026-04-27T17:01:33.499Z",
+      "lastPublishedAt": "2026-04-27T17:01:33.499Z",
+      "expiredAt": "2026-05-27T17:01:33.499Z",
+      "openToHireUkrainians": false,
+      "languages": [
+        {
+          "code": "en",
+          "level": "b2"
+        },
+        {
+          "code": "ru",
+          "level": "c1"
+        }
+      ],
+      "applyMethod": "form",
+      "isSuperOffer": false,
+      "promotedPosition": null,
+      "promotedKeyFilters": []
+    },
+    {
+      "guid": "cf31c2bd-717b-4354-8d60-3224cb9572e3",
+      "slug": "htd-senior-ux-ui-designer-pl---join-our-talent-pool--lodz-ux",
+      "title": "Senior UX/UI Designer (PL) - Join Our Talent Pool!",
+      "requiredSkills": null,
+      "niceToHaveSkills": null,
+      "workplaceType": "remote",
+      "workingTime": "full_time",
+      "experienceLevel": "senior",
+      "employmentTypes": [
+        {
+          "from": null,
+          "to": null,
+          "currency": "pln",
+          "type": "any",
+          "unit": "month",
+          "gross": false,
+          "fromChf": null,
+          "fromEur": null,
+          "fromGbp": null,
+          "fromPln": null,
+          "fromUsd": null,
+          "toChf": null,
+          "toEur": null,
+          "toGbp": null,
+          "toPln": null,
+          "toUsd": null
+        }
+      ],
+      "categoryId": 14,
+      "multilocation": [
+        {
+          "city": "Łódź",
+          "slug": "htd-senior-ux-ui-designer-pl---join-our-talent-pool--lodz-ux",
+          "street": "Piotrkowska 148/150",
+          "latitude": 51.766708,
+          "longitude": 19.464689
+        }
+      ],
+      "city": "Łódź",
+      "street": "Piotrkowska 148/150",
+      "latitude": "51.7667080",
+      "longitude": "19.4646890",
+      "remoteInterview": false,
+      "companyName": "HTD",
+      "companyLogoThumbUrl": "https://imgproxy.justjoinit.tech/0Yf4kHgrXEDYipz891RI8iAJ9RZ2zL_CNm2JnGRb3XU/h:200/w:200/plain/https://htdjobs.traffit.com/api/file/publicFileContent/474",
+      "publishedAt": "2026-04-28T09:34:04.824Z",
+      "lastPublishedAt": "2026-04-28T09:34:04.824Z",
+      "expiredAt": "2026-05-04T21:59:59.999Z",
+      "openToHireUkrainians": false,
+      "languages": [],
+      "applyMethod": "external",
+      "isSuperOffer": false,
+      "promotedPosition": null,
+      "promotedKeyFilters": []
+    },
+    {
+      "guid": "b7f585a7-c461-4563-ac95-f98c636386fa",
+      "slug": "connectis-ux-designer-warszawa-ux-6d112b0d",
+      "title": "UX Designer",
+      "requiredSkills": null,
+      "niceToHaveSkills": null,
+      "workplaceType": "remote",
+      "workingTime": "full_time",
+      "experienceLevel": "senior",
+      "employmentTypes": [
+        {
+          "from": 97,
+          "to": 142,
+          "currency": "pln",
+          "type": "b2b",
+          "unit": "hour",
+          "gross": false,
+          "fromChf": 20.928623,
+          "fromEur": 22.846604,
+          "fromGbp": 19.693813,
+          "fromPln": 97,
+          "fromUsd": 26.788587,
+          "toChf": 30.637778,
+          "toEur": 33.445544,
+          "toGbp": 28.830118,
+          "toPln": 142,
+          "toUsd": 39.216282
+        }
+      ],
+      "categoryId": 14,
+      "multilocation": [
+        {
+          "city": "Warszawa",
+          "slug": "connectis-ux-designer-warszawa-ux-6d112b0d",
+          "street": "Warszawa",
+          "latitude": 52.2296756,
+          "longitude": 21.0122287
+        }
+      ],
+      "city": "Warszawa",
+      "street": "Warszawa",
+      "latitude": "52.2296756",
+      "longitude": "21.0122287",
+      "remoteInterview": true,
+      "companyName": "Connectis",
+      "companyLogoThumbUrl": "https://imgproxy.justjoinit.tech/SIhWFgRRuEzib5KQrHb9sga1QRf7nOleb2gI_7nno3Q/h:200/w:200/plain/https://public.justjoin.it/companies/logos/original/a16ec90cd0919258c6cb2bc18cfcf5c4cba57111.png",
+      "publishedAt": "2026-04-28T12:00:18.024Z",
+      "lastPublishedAt": "2026-04-03T12:12:18.679Z",
+      "expiredAt": "2026-07-02T21:59:59.999Z",
+      "openToHireUkrainians": false,
+      "languages": [
+        {
+          "code": "pl",
+          "level": "c2"
+        },
+        {
+          "code": "en",
+          "level": "c1"
+        }
+      ],
+      "applyMethod": "external",
+      "isSuperOffer": false,
+      "promotedPosition": null,
+      "promotedKeyFilters": []
+    },
+    {
+      "guid": "60667ef9-40d7-40ad-9509-eb78161e3a58",
+      "slug": "emagine-polska-ui-ux-consultant-lisbon-ux",
+      "title": "UI/UX Consultant",
+      "requiredSkills": null,
+      "niceToHaveSkills": null,
+      "workplaceType": "hybrid",
+      "workingTime": "full_time",
+      "experienceLevel": "junior",
+      "employmentTypes": [
+        {
+          "from": null,
+          "to": null,
+          "currency": "pln",
+          "type": "any",
+          "unit": "month",
+          "gross": false,
+          "fromChf": null,
+          "fromEur": null,
+          "fromGbp": null,
+          "fromPln": null,
+          "fromUsd": null,
+          "toChf": null,
+          "toEur": null,
+          "toGbp": null,
+          "toPln": null,
+          "toUsd": null
+        }
+      ],
+      "categoryId": 14,
+      "multilocation": [
+        {
+          "city": "Lisbon",
+          "slug": "emagine-polska-ui-ux-consultant-lisbon-ux",
+          "street": "Centrum",
+          "latitude": 38.707008,
+          "longitude": -9.135641
+        }
+      ],
+      "city": "Lisbon",
+      "street": "Centrum",
+      "latitude": "38.7070080",
+      "longitude": "-9.1356410",
+      "remoteInterview": true,
+      "companyName": "emagine Polska",
+      "companyLogoThumbUrl": "https://imgproxy.justjoinit.tech/BzWgyxi50NEVw8vVhCjtH0e1OtZow3scOIpr5d1O1qQ/h:200/w:200/plain/https://public.justjoin.it/companies/logos/original/b6fd52b7d3d170271a3d77ac5cc99a1212236ce3.jpg",
+      "publishedAt": "2026-04-28T12:10:36.753Z",
+      "lastPublishedAt": "2026-04-28T12:10:36.753Z",
+      "expiredAt": "2026-07-27T12:10:36.753Z",
+      "openToHireUkrainians": true,
+      "languages": [
+        {
+          "code": "en",
+          "level": "b1"
+        },
+        {
+          "code": "pt",
+          "level": "c1"
+        }
+      ],
+      "applyMethod": "external",
+      "isSuperOffer": false,
+      "promotedPosition": null,
+      "promotedKeyFilters": []
+    },
+    {
+      "guid": "29d4f0d9-c16e-419b-95e6-993936ad8bde",
+      "slug": "doctor-one-service-designer-clinical-services--warszawa-ux",
+      "title": "Service Designer (Clinical Services)",
+      "requiredSkills": null,
+      "niceToHaveSkills": null,
+      "workplaceType": "hybrid",
+      "workingTime": "full_time",
+      "experienceLevel": "mid",
+      "employmentTypes": [
+        {
+          "from": 14000,
+          "to": 18000,
+          "currency": "pln",
+          "type": "b2b",
+          "unit": "month",
+          "gross": false,
+          "fromChf": 3020.626,
+          "fromEur": 3297.448,
+          "fromGbp": 2842.406,
+          "fromPln": 14000,
+          "fromUsd": 3866.394,
+          "toChf": 3883.662,
+          "toEur": 4239.576,
+          "toGbp": 3654.522,
+          "toPln": 18000,
+          "toUsd": 4971.078
+        }
+      ],
+      "categoryId": 14,
+      "multilocation": [
+        {
+          "city": "Warszawa",
+          "slug": "doctor-one-service-designer-clinical-services--warszawa-ux",
+          "street": "Tadeusza Czackiego 1",
+          "latitude": 52.2372218,
+          "longitude": 21.0150498
+        }
+      ],
+      "city": "Warszawa",
+      "street": "Tadeusza Czackiego 1",
+      "latitude": "52.2372218",
+      "longitude": "21.0150498",
+      "remoteInterview": true,
+      "companyName": "Doctor.One",
+      "companyLogoThumbUrl": "https://imgproxy.justjoinit.tech/VFMLOYoP6oZBbtM9zSIQAKYdEgEO5hPT1dEeT_PKll8/h:200/w:200/plain/https://public.justjoin.it/companies/logos/original/35c3c16d8233f65a4c40093f2e91bba4d9dc18ea.png",
+      "publishedAt": "2026-04-28T13:00:05.058Z",
+      "lastPublishedAt": "2026-04-03T12:27:28.423Z",
+      "expiredAt": "2026-05-03T12:27:28.423Z",
+      "openToHireUkrainians": false,
+      "languages": [
+        {
+          "code": "pl",
+          "level": "c2"
+        },
+        {
+          "code": "en",
+          "level": "c1"
+        }
+      ],
+      "applyMethod": "external",
+      "isSuperOffer": false,
+      "promotedPosition": null,
+      "promotedKeyFilters": []
+    },
+    {
+      "guid": "331504de-c2b8-4246-8c4f-b03e006164e3",
+      "slug": "speedapp-ux-researcher-warszawa-ux",
+      "title": "UX Researcher",
+      "requiredSkills": [
+        "UX"
+      ],
+      "niceToHaveSkills": null,
+      "workplaceType": "hybrid",
+      "workingTime": "full_time",
+      "experienceLevel": "mid",
+      "employmentTypes": [
+        {
+          "from": 100,
+          "to": 120,
+          "currency": "pln",
+          "type": "b2b",
+          "unit": "hour",
+          "gross": false,
+          "fromChf": 21.5759,
+          "fromEur": 23.5532,
+          "fromGbp": 20.3029,
+          "fromPln": 100,
+          "fromUsd": 27.6171,
+          "toChf": 25.89108,
+          "toEur": 28.26384,
+          "toGbp": 24.36348,
+          "toPln": 120,
+          "toUsd": 33.14052
+        }
+      ],
+      "categoryId": 14,
+      "multilocation": [
+        {
+          "city": "Warszawa",
+          "slug": "speedapp-ux-researcher-warszawa-ux",
+          "street": "Chmielna 71",
+          "latitude": 52.23584,
+          "longitude": 21.011959
+        }
+      ],
+      "city": "Warszawa",
+      "street": "Chmielna 71",
+      "latitude": "52.2358400",
+      "longitude": "21.0119590",
+      "remoteInterview": false,
+      "companyName": "speedapp",
+      "companyLogoThumbUrl": "https://imgproxy.justjoinit.tech/fxAtzU3iFx17VgOB1eNwuQDgZh8Cam6y4tKA4ZkT4gA/h:200/w:200/plain/https://speedapp.traffit.com/api/file/publicFileContent/87",
+      "publishedAt": "2026-04-28T13:00:11.211Z",
+      "lastPublishedAt": "2026-03-04T12:34:02.912Z",
+      "expiredAt": "2026-06-02T21:59:59.999Z",
+      "openToHireUkrainians": false,
+      "languages": [],
+      "applyMethod": "external",
+      "isSuperOffer": false,
+      "promotedPosition": null,
+      "promotedKeyFilters": []
+    },
+    {
+      "guid": "5810328d-bdb9-4231-b356-e202898c66a6",
+      "slug": "green-hive-technology-product-designer-she-he-they--poznan-ux",
+      "title": "Product Designer (she/he/they)",
+      "requiredSkills": null,
+      "niceToHaveSkills": null,
+      "workplaceType": "remote",
+      "workingTime": "full_time",
+      "experienceLevel": "mid",
+      "employmentTypes": [
+        {
+          "from": null,
+          "to": null,
+          "currency": "pln",
+          "type": "b2b",
+          "unit": "month",
+          "gross": false,
+          "fromChf": null,
+          "fromEur": null,
+          "fromGbp": null,
+          "fromPln": null,
+          "fromUsd": null,
+          "toChf": null,
+          "toEur": null,
+          "toGbp": null,
+          "toPln": null,
+          "toUsd": null
+        }
+      ],
+      "categoryId": 14,
+      "multilocation": [
+        {
+          "city": "Poznań",
+          "slug": "green-hive-technology-product-designer-she-he-they--poznan-ux",
+          "street": "Stanisława Matyi 8",
+          "latitude": 52.4014018,
+          "longitude": 16.9178053
+        },
+        {
+          "city": "Warszawa",
+          "slug": "green-hive-technology-product-designer-she-he-they--warszawa-ux",
+          "street": "plac Marszałka Józefa Piłsudskiego 1-3",
+          "latitude": 52.2422747,
+          "longitude": 21.0127586
+        },
+        {
+          "city": "Gdańsk",
+          "slug": "green-hive-technology-product-designer-she-he-they--gdansk-ux",
+          "street": "-",
+          "latitude": 54.3520252,
+          "longitude": 18.6466384
+        },
+        {
+          "city": "Wrocław",
+          "slug": "green-hive-technology-product-designer-she-he-they--wroclaw-ux",
+          "street": "-",
+          "latitude": 51.1092948,
+          "longitude": 17.0386019
+        },
+        {
+          "city": "Kraków",
+          "slug": "green-hive-technology-product-designer-she-he-they--krakow-ux",
+          "street": "-",
+          "latitude": 50.0646501,
+          "longitude": 19.9449799
+        }
+      ],
+      "city": "Poznań",
+      "street": "Stanisława Matyi 8",
+      "latitude": "52.4014018",
+      "longitude": "16.9178053",
+      "remoteInterview": true,
+      "companyName": "Green Hive Technology",
+      "companyLogoThumbUrl": "https://imgproxy.justjoinit.tech/JfNkjyBxKw0mtZhB4o1jPZcbJmZYIzr11m3kINtfm20/h:200/w:200/plain/https://s3.eu-west-1.amazonaws.com/images.justjoin.it/justjoinit/company-logos/1760531513_0199e7db00f37f1a91701113722c3304.png",
+      "publishedAt": "2026-04-28T13:00:13.561Z",
+      "lastPublishedAt": "2026-03-24T13:03:54.289Z",
+      "expiredAt": "2026-07-31T21:59:59.999Z",
+      "openToHireUkrainians": false,
+      "languages": [],
+      "applyMethod": "external",
+      "isSuperOffer": false,
+      "promotedPosition": null,
+      "promotedKeyFilters": []
+    },
+    {
+      "guid": "54fd23a9-772c-46bc-9310-c99c7af2bcd4",
+      "slug": "rits-professional-services-ux-researcher-warszawa-ux-cb4bf59d",
+      "title": "UX Researcher",
+      "requiredSkills": null,
+      "niceToHaveSkills": null,
+      "workplaceType": "remote",
+      "workingTime": "full_time",
+      "experienceLevel": "mid",
+      "employmentTypes": [
+        {
+          "from": 70,
+          "to": 80,
+          "currency": "pln",
+          "type": "b2b",
+          "unit": "hour",
+          "gross": false,
+          "fromChf": 15.10313,
+          "fromEur": 16.48724,
+          "fromGbp": 14.21203,
+          "fromPln": 70,
+          "fromUsd": 19.33197,
+          "toChf": 17.26072,
+          "toEur": 18.84256,
+          "toGbp": 16.24232,
+          "toPln": 80,
+          "toUsd": 22.09368
+        }
+      ],
+      "categoryId": 14,
+      "multilocation": [
+        {
+          "city": "Warszawa",
+          "slug": "rits-professional-services-ux-researcher-warszawa-ux-cb4bf59d",
+          "street": "Warszawa",
+          "latitude": 52.2296756,
+          "longitude": 21.0122287
+        }
+      ],
+      "city": "Warszawa",
+      "street": "Warszawa",
+      "latitude": "52.2296756",
+      "longitude": "21.0122287",
+      "remoteInterview": true,
+      "companyName": "RITS Professional Services",
+      "companyLogoThumbUrl": "https://imgproxy.justjoinit.tech/LafTl_MeCWaAWPuPbktKxejN19c402krOnqHqFPzAiQ/h:200/w:200/plain/https://public.justjoin.it/companies/logos/original/f2ba2d96fabedd9025bf85126372dc27ecef96ed.png",
+      "publishedAt": "2026-04-28T13:47:09.658Z",
+      "lastPublishedAt": "2026-04-28T13:47:09.658Z",
+      "expiredAt": "2026-05-29T21:59:59.999Z",
+      "openToHireUkrainians": false,
+      "languages": [],
+      "applyMethod": "external",
+      "isSuperOffer": false,
+      "promotedPosition": null,
+      "promotedKeyFilters": []
+    },
+    {
+      "guid": "e7da47cc-0bda-4f7a-afb0-4d4bc90690f6",
+      "slug": "cyclad-senior-ux-designer-poland-remote--ux",
+      "title": "Senior UX Designer",
+      "requiredSkills": null,
+      "niceToHaveSkills": null,
+      "workplaceType": "remote",
+      "workingTime": "full_time",
+      "experienceLevel": "senior",
+      "employmentTypes": [
+        {
+          "from": 160,
+          "to": 160,
+          "currency": "pln",
+          "type": "b2b",
+          "unit": "hour",
+          "gross": false,
+          "fromChf": 34.52144,
+          "fromEur": 37.68512,
+          "fromGbp": 32.48464,
+          "fromPln": 160,
+          "fromUsd": 44.18736,
+          "toChf": 34.52144,
+          "toEur": 37.68512,
+          "toGbp": 32.48464,
+          "toPln": 160,
+          "toUsd": 44.18736
+        }
+      ],
+      "categoryId": 14,
+      "multilocation": [
+        {
+          "city": "Poland (Remote)",
+          "slug": "cyclad-senior-ux-designer-poland-remote--ux",
+          "street": "-",
+          "latitude": 51.919438,
+          "longitude": 19.145136
+        }
+      ],
+      "city": "Poland (Remote)",
+      "street": "-",
+      "latitude": "51.9194380",
+      "longitude": "19.1451360",
+      "remoteInterview": false,
+      "companyName": "Cyclad",
+      "companyLogoThumbUrl": "https://imgproxy.justjoinit.tech/pcpoewJL1QOLxuW5jRsAyVSBh3nxPBV_5WtNNlvscgI/h:200/w:200/plain/https://public.justjoin.it/companies/logos/original/283e91cc374f927a164cb66785c9983f28fa28da.jpg",
+      "publishedAt": "2026-04-28T15:00:14.631Z",
+      "lastPublishedAt": "2026-04-03T14:20:19.576Z",
+      "expiredAt": "2026-07-02T21:59:59.999Z",
+      "openToHireUkrainians": false,
+      "languages": [],
+      "applyMethod": "external",
+      "isSuperOffer": false,
+      "promotedPosition": null,
+      "promotedKeyFilters": []
+    },
+    {
+      "guid": "6997a997-889c-4eba-bcee-f07aced974bc",
+      "slug": "andersen-product-designer-hungary-ux",
+      "title": "Product Designer",
+      "requiredSkills": null,
+      "niceToHaveSkills": null,
+      "workplaceType": "remote",
+      "workingTime": "full_time",
+      "experienceLevel": "mid",
+      "employmentTypes": [
+        {
+          "from": null,
+          "to": null,
+          "currency": "eur",
+          "type": "b2b",
+          "unit": "month",
+          "gross": false,
+          "fromChf": null,
+          "fromEur": null,
+          "fromGbp": null,
+          "fromPln": null,
+          "fromUsd": null,
+          "toChf": null,
+          "toEur": null,
+          "toGbp": null,
+          "toPln": null,
+          "toUsd": null
+        }
+      ],
+      "categoryId": 14,
+      "multilocation": [
+        {
+          "city": "Hungary",
+          "slug": "andersen-product-designer-hungary-ux",
+          "street": "Árbóc utca 1-3",
+          "latitude": 47.5329736,
+          "longitude": 19.06422
+        },
+        {
+          "city": "Lithuania",
+          "slug": "andersen-product-designer-lithuania-ux",
+          "street": "Gedimino pr. 20",
+          "latitude": 54.6872811,
+          "longitude": 25.2783207
+        },
+        {
+          "city": "Poland",
+          "slug": "andersen-product-designer-poland-ux",
+          "street": "Aleja Pokoju 18B",
+          "latitude": 50.0613668,
+          "longitude": 19.9741215
+        }
+      ],
+      "city": "Hungary",
+      "street": "Árbóc utca 1-3",
+      "latitude": "47.5329736",
+      "longitude": "19.0642200",
+      "remoteInterview": false,
+      "companyName": "Andersen",
+      "companyLogoThumbUrl": "https://imgproxy.justjoinit.tech/QZVCisDY6VAm697ZkFWXSSDk4tssEHVfdnE4PMldEA4/h:200/w:200/plain/https://public.justjoin.it/companies/logos/original/c9112f1ec1d9dcf218f2c629a268a95818acef0a.png",
+      "publishedAt": "2026-04-28T15:00:16.644Z",
+      "lastPublishedAt": "2026-04-08T14:24:10.294Z",
+      "expiredAt": "2026-07-07T20:59:59.999Z",
+      "openToHireUkrainians": false,
+      "languages": [
+        {
+          "code": "en",
+          "level": "b2"
+        },
+        {
+          "code": "de",
+          "level": "b2"
+        }
+      ],
+      "applyMethod": "form",
+      "isSuperOffer": false,
+      "promotedPosition": null,
+      "promotedKeyFilters": []
+    },
+    {
+      "guid": "4f7e28d4-e9ba-44a1-862e-d471305e9e8e",
+      "slug": "kadromierz-product-designer-wroclaw-ux",
+      "title": "Product Designer",
+      "requiredSkills": null,
+      "niceToHaveSkills": null,
+      "workplaceType": "hybrid",
+      "workingTime": "full_time",
+      "experienceLevel": "mid",
+      "employmentTypes": [
+        {
+          "from": 11000,
+          "to": 14000,
+          "currency": "pln",
+          "type": "b2b",
+          "unit": "month",
+          "gross": false,
+          "fromChf": 2373.349,
+          "fromEur": 2590.852,
+          "fromGbp": 2233.319,
+          "fromPln": 11000,
+          "fromUsd": 3037.881,
+          "toChf": 3020.626,
+          "toEur": 3297.448,
+          "toGbp": 2842.406,
+          "toPln": 14000,
+          "toUsd": 3866.394
+        },
+        {
+          "from": 9000,
+          "to": 12000,
+          "currency": "pln",
+          "type": "permanent",
+          "unit": "month",
+          "gross": true,
+          "fromChf": 1941.831,
+          "fromEur": 2119.788,
+          "fromGbp": 1827.261,
+          "fromPln": 9000,
+          "fromUsd": 2485.539,
+          "toChf": 2589.108,
+          "toEur": 2826.384,
+          "toGbp": 2436.348,
+          "toPln": 12000,
+          "toUsd": 3314.052
+        }
+      ],
+      "categoryId": 14,
+      "multilocation": [
+        {
+          "city": "Wrocław",
+          "slug": "kadromierz-product-designer-wroclaw-ux",
+          "street": "Januszowicka 5",
+          "latitude": 51.0847869,
+          "longitude": 17.0129657
+        }
+      ],
+      "city": "Wrocław",
+      "street": "Januszowicka 5",
+      "latitude": "51.0847869",
+      "longitude": "17.0129657",
+      "remoteInterview": false,
+      "companyName": "Kadromierz",
+      "companyLogoThumbUrl": "https://imgproxy.justjoinit.tech/ijfnSy9yEvt0REe8YWIal0E6vKQ09QCeR_o2FBekLZc/h:200/w:200/plain/https://public.justjoin.it/companies/logos/original/9a4ce081d2417bc89333c4f78b2b6d4ad6518302.png",
+      "publishedAt": "2026-04-28T15:00:19.271Z",
+      "lastPublishedAt": "2026-03-19T14:51:53.493Z",
+      "expiredAt": "2026-06-12T21:59:59.999Z",
+      "openToHireUkrainians": false,
+      "languages": [
+        {
+          "code": "en",
+          "level": "b2"
+        },
+        {
+          "code": "pl",
+          "level": "c2"
+        }
+      ],
+      "applyMethod": "form",
+      "isSuperOffer": false,
+      "promotedPosition": null,
+      "promotedKeyFilters": []
+    },
+    {
+      "guid": "39f1b88b-a890-43e2-94d7-c2afdfa2f9b8",
+      "slug": "volleystation-senior-ux-ui-designer-warszawa-ux",
+      "title": "Senior UX/ UI Designer",
+      "requiredSkills": null,
+      "niceToHaveSkills": null,
+      "workplaceType": "remote",
+      "workingTime": "full_time",
+      "experienceLevel": "senior",
+      "employmentTypes": [
+        {
+          "from": 15000,
+          "to": 22000,
+          "currency": "pln",
+          "type": "b2b",
+          "unit": "month",
+          "gross": false,
+          "fromChf": 3236.385,
+          "fromEur": 3532.98,
+          "fromGbp": 3045.435,
+          "fromPln": 15000,
+          "fromUsd": 4142.565,
+          "toChf": 4746.698,
+          "toEur": 5181.704,
+          "toGbp": 4466.638,
+          "toPln": 22000,
+          "toUsd": 6075.762
+        }
+      ],
+      "categoryId": 14,
+      "multilocation": [
+        {
+          "city": "Warszawa",
+          "slug": "volleystation-senior-ux-ui-designer-warszawa-ux",
+          "street": "Flory 9/9",
+          "latitude": 52.2134519,
+          "longitude": 21.0236984
+        },
+        {
+          "city": "Wrocław",
+          "slug": "volleystation-senior-ux-ui-designer-wroclaw-ux",
+          "street": "-",
+          "latitude": 51.1092948,
+          "longitude": 17.0386019
+        },
+        {
+          "city": "Gdańsk",
+          "slug": "volleystation-senior-ux-ui-designer-gdansk-ux",
+          "street": "-",
+          "latitude": 54.3520252,
+          "longitude": 18.6466384
+        },
+        {
+          "city": "Kraków",
+          "slug": "volleystation-senior-ux-ui-designer-krakow-ux",
+          "street": "-",
+          "latitude": 50.0646501,
+          "longitude": 19.9449799
+        },
+        {
+          "city": "Katowice",
+          "slug": "volleystation-senior-ux-ui-designer-katowice-ux",
+          "street": "-",
+          "latitude": 50.2648919,
+          "longitude": 19.0237815
+        }
+      ],
+      "city": "Warszawa",
+      "street": "Flory 9/9",
+      "latitude": "52.2134519",
+      "longitude": "21.0236984",
+      "remoteInterview": true,
+      "companyName": "VolleyStation",
+      "companyLogoThumbUrl": "https://imgproxy.justjoinit.tech/zUurOhRB_H6GkwNelWWmUZZ5Qbnq1cppDSldOvocoMI/h:200/w:200/plain/https://s3.eu-west-1.amazonaws.com/images.justjoin.it/justjoinit/company-logos/53f656d4-1b2b-4583-a47f-139db8dc1a96.png",
+      "publishedAt": "2026-04-28T15:00:21.196Z",
+      "lastPublishedAt": "2026-04-03T14:40:37.991Z",
+      "expiredAt": "2026-05-10T21:59:59.999Z",
+      "openToHireUkrainians": false,
+      "languages": [
+        {
+          "code": "en",
+          "level": "c1"
+        }
+      ],
+      "applyMethod": "external",
+      "isSuperOffer": false,
+      "promotedPosition": null,
+      "promotedKeyFilters": []
+    },
+    {
+      "guid": "27e73928-97ec-4594-bf3c-1cdda00fe25b",
+      "slug": "rits-professional-services-ux-designer-warszawa-ux-4b9ecb43",
+      "title": "UX Designer",
+      "requiredSkills": [
+        "BPM",
+        "BPMN2",
+        "UX/UI",
+        "UX Design"
+      ],
+      "niceToHaveSkills": null,
+      "workplaceType": "hybrid",
+      "workingTime": "full_time",
+      "experienceLevel": "mid",
+      "employmentTypes": [
+        {
+          "from": 90,
+          "to": 110,
+          "currency": "pln",
+          "type": "b2b",
+          "unit": "hour",
+          "gross": false,
+          "fromChf": 19.41831,
+          "fromEur": 21.19788,
+          "fromGbp": 18.27261,
+          "fromPln": 90,
+          "fromUsd": 24.85539,
+          "toChf": 23.73349,
+          "toEur": 25.90852,
+          "toGbp": 22.33319,
+          "toPln": 110,
+          "toUsd": 30.37881
+        }
+      ],
+      "categoryId": 14,
+      "multilocation": [
+        {
+          "city": "Warszawa",
+          "slug": "rits-professional-services-ux-designer-warszawa-ux-4b9ecb43",
+          "street": "Warszawa",
+          "latitude": 52.2296756,
+          "longitude": 21.0122287
+        }
+      ],
+      "city": "Warszawa",
+      "street": "Warszawa",
+      "latitude": "52.2296756",
+      "longitude": "21.0122287",
+      "remoteInterview": false,
+      "companyName": "RITS Professional Services",
+      "companyLogoThumbUrl": "https://imgproxy.justjoinit.tech/LafTl_MeCWaAWPuPbktKxejN19c402krOnqHqFPzAiQ/h:200/w:200/plain/https://public.justjoin.it/companies/logos/original/f2ba2d96fabedd9025bf85126372dc27ecef96ed.png",
+      "publishedAt": "2026-04-28T15:00:21.261Z",
+      "lastPublishedAt": "2026-03-09T14:39:26.306Z",
+      "expiredAt": "2026-06-07T21:59:59.999Z",
+      "openToHireUkrainians": false,
+      "languages": [
+        {
+          "code": "pl",
+          "level": "b2"
+        },
+        {
+          "code": "en",
+          "level": "b2"
+        }
+      ],
+      "applyMethod": "external",
+      "isSuperOffer": false,
+      "promotedPosition": null,
+      "promotedKeyFilters": []
+    },
+    {
+      "guid": "7d25f987-1558-499b-98ca-5d9beb6a38cd",
+      "slug": "future-mind-product-designer---team-leader-warszawa-ux-30431a63",
+      "title": "Product Designer - Team Leader",
+      "requiredSkills": null,
+      "niceToHaveSkills": null,
+      "workplaceType": "remote",
+      "workingTime": "full_time",
+      "experienceLevel": "senior",
+      "employmentTypes": [
+        {
+          "from": 19000,
+          "to": 22000,
+          "currency": "pln",
+          "type": "b2b",
+          "unit": "month",
+          "gross": false,
+          "fromChf": 4099.421,
+          "fromEur": 4475.108,
+          "fromGbp": 3857.551,
+          "fromPln": 19000,
+          "fromUsd": 5247.249,
+          "toChf": 4746.698,
+          "toEur": 5181.704,
+          "toGbp": 4466.638,
+          "toPln": 22000,
+          "toUsd": 6075.762
+        }
+      ],
+      "categoryId": 14,
+      "multilocation": [
+        {
+          "city": "Warszawa",
+          "slug": "future-mind-product-designer---team-leader-warszawa-ux-30431a63",
+          "street": "Puławska 182",
+          "latitude": 52.1816941,
+          "longitude": 21.0216558
+        },
+        {
+          "city": "Wrocław",
+          "slug": "future-mind-product-designer---team-leader-wroclaw-ux-d4e1cc03",
+          "street": "-",
+          "latitude": 51.1092948,
+          "longitude": 17.0386019
+        },
+        {
+          "city": "Kraków",
+          "slug": "future-mind-product-designer---team-leader-krakow-ux-824d1bbb",
+          "street": "-",
+          "latitude": 50.0646501,
+          "longitude": 19.9449799
+        },
+        {
+          "city": "Katowice",
+          "slug": "future-mind-product-designer---team-leader-katowice-ux-265e76eb",
+          "street": "-",
+          "latitude": 50.2648919,
+          "longitude": 19.0237815
+        },
+        {
+          "city": "Gdańsk",
+          "slug": "future-mind-product-designer---team-leader-gdansk-ux-6a9cf61e",
+          "street": "-",
+          "latitude": 54.3520252,
+          "longitude": 18.6466384
+        }
+      ],
+      "city": "Warszawa",
+      "street": "Puławska 182",
+      "latitude": "52.1816941",
+      "longitude": "21.0216558",
+      "remoteInterview": true,
+      "companyName": "Future Mind",
+      "companyLogoThumbUrl": "https://imgproxy.justjoinit.tech/zjALVsd15PJzUpnqw0yvgPYKba9ma9ewe7wcBytWppo/h:200/w:200/plain/https://imgproxy.justjoinit.tech/tom4QH5_QZz9WZUFNEg_mb7Zq8mP4zR7CjWb7Ann-fA/h:200/w:200/plain/https://public.justjoin.it/offers/company_logos/original/37e7300d0c1e8447bc0bf0dac38df61bd9192dd8.jpg",
+      "publishedAt": "2026-04-28T19:00:07.412Z",
+      "lastPublishedAt": "2026-04-03T18:35:39.201Z",
+      "expiredAt": "2026-07-02T18:35:39.201Z",
+      "openToHireUkrainians": true,
+      "languages": [],
+      "applyMethod": "form",
+      "isSuperOffer": false,
+      "promotedPosition": null,
+      "promotedKeyFilters": []
+    },
+    {
+      "guid": "a3da9823-0d95-4ef2-b273-bc4130e0dfad",
+      "slug": "kratos-growth-ux-ui-product-design-lead-new-york-ux-488b8d7c",
+      "title": "UX/UI Product Design Lead",
+      "requiredSkills": null,
+      "niceToHaveSkills": null,
+      "workplaceType": "remote",
+      "workingTime": "full_time",
+      "experienceLevel": "senior",
+      "employmentTypes": [
+        {
+          "from": null,
+          "to": null,
+          "currency": "usd",
+          "type": "b2b",
+          "unit": "month",
+          "gross": false,
+          "fromChf": null,
+          "fromEur": null,
+          "fromGbp": null,
+          "fromPln": null,
+          "fromUsd": null,
+          "toChf": null,
+          "toEur": null,
+          "toGbp": null,
+          "toPln": null,
+          "toUsd": null
+        }
+      ],
+      "categoryId": 14,
+      "multilocation": [
+        {
+          "city": "New York",
+          "slug": "kratos-growth-ux-ui-product-design-lead-new-york-ux-488b8d7c",
+          "street": "Remote",
+          "latitude": 40.7127753,
+          "longitude": -74.0059728
+        }
+      ],
+      "city": "New York",
+      "street": "Remote",
+      "latitude": "40.7127753",
+      "longitude": "-74.0059728",
+      "remoteInterview": false,
+      "companyName": "Kratos Growth",
+      "companyLogoThumbUrl": "https://imgproxy.justjoinit.tech/PEHTpLz-iavIJnRL64gadTxHDyqAfmOpWta1uWVEynw/h:200/w:200/plain/https://s3.eu-west-1.amazonaws.com/images.justjoin.it/justjoinit/company-logos/89a2610b-b697-4909-a345-b9ee5fa0f46e.png",
+      "publishedAt": "2026-04-29T04:57:05.187Z",
+      "lastPublishedAt": "2026-04-29T04:57:05.187Z",
+      "expiredAt": "2026-05-29T04:57:05.187Z",
+      "openToHireUkrainians": false,
+      "languages": [],
+      "applyMethod": "form",
+      "isSuperOffer": false,
+      "promotedPosition": null,
+      "promotedKeyFilters": []
+    },
+    {
+      "guid": "46e9402e-5a6b-442c-8294-f7f9beabab70",
+      "slug": "kodland-nauczyciel-tutor-online-minecraft-education-warszawa-ux",
+      "title": "Nauczyciel/Tutor Online Minecraft Education",
+      "requiredSkills": null,
+      "niceToHaveSkills": null,
+      "workplaceType": "remote",
+      "workingTime": "part_time",
+      "experienceLevel": "mid",
+      "employmentTypes": [
+        {
+          "from": 3500,
+          "to": 4500,
+          "currency": "pln",
+          "type": "b2b",
+          "unit": "month",
+          "gross": false,
+          "fromChf": 755.1565,
+          "fromEur": 824.362,
+          "fromGbp": 710.6015,
+          "fromPln": 3500,
+          "fromUsd": 966.5985,
+          "toChf": 970.9155,
+          "toEur": 1059.894,
+          "toGbp": 913.6305,
+          "toPln": 4500,
+          "toUsd": 1242.7695
+        }
+      ],
+      "categoryId": 14,
+      "multilocation": [
+        {
+          "city": "Warszawa",
+          "slug": "kodland-nauczyciel-tutor-online-minecraft-education-warszawa-ux",
+          "street": "Centrum",
+          "latitude": 52.2296756,
+          "longitude": 21.0122287
+        },
+        {
+          "city": "Wrocław",
+          "slug": "kodland-nauczyciel-tutor-online-minecraft-education-wroclaw-ux",
+          "street": "aleja Aleksandra Brücknera 54",
+          "latitude": 51.1386343,
+          "longitude": 17.0808864
+        },
+        {
+          "city": "Łódź",
+          "slug": "kodland-nauczyciel-tutor-online-minecraft-education-lodz-ux",
+          "street": "Centrum",
+          "latitude": 51.7652976,
+          "longitude": 19.4544251
+        },
+        {
+          "city": "Kraków",
+          "slug": "kodland-nauczyciel-tutor-online-minecraft-education-krakow-ux",
+          "street": "Centrum",
+          "latitude": 50.0646501,
+          "longitude": 19.9449799
+        }
+      ],
+      "city": "Warszawa",
+      "street": "Centrum",
+      "latitude": "52.2296756",
+      "longitude": "21.0122287",
+      "remoteInterview": false,
+      "companyName": "KODLAND",
+      "companyLogoThumbUrl": "https://imgproxy.justjoinit.tech/uiiI-uPsCvUlnH5Faj7OyCbVBlvUxbXi-K5eIN7aOJs/h:200/w:200/plain/https://public.justjoin.it/companies/logos/original/f270dd994ae4ef58c6bc5cdd29abd91a87d43411.jpg",
+      "publishedAt": "2026-04-29T07:00:07.109Z",
+      "lastPublishedAt": "2026-03-30T06:34:11.317Z",
+      "expiredAt": "2026-06-28T20:59:59.999Z",
+      "openToHireUkrainians": false,
+      "languages": [
+        {
+          "code": "pl",
+          "level": "c1"
+        }
+      ],
+      "applyMethod": "external",
+      "isSuperOffer": false,
+      "promotedPosition": null,
+      "promotedKeyFilters": []
+    },
+    {
+      "guid": "13ddc43b-6ebe-43dc-b80b-656ab450dc8c",
+      "slug": "kodland-nauczyciel-tutor-online-minecraft-education-poznan-ux",
+      "title": "Nauczyciel/Tutor Online Minecraft Education",
+      "requiredSkills": null,
+      "niceToHaveSkills": null,
+      "workplaceType": "remote",
+      "workingTime": "part_time",
+      "experienceLevel": "mid",
+      "employmentTypes": [
+        {
+          "from": 3500,
+          "to": 4500,
+          "currency": "pln",
+          "type": "b2b",
+          "unit": "month",
+          "gross": false,
+          "fromChf": 755.1565,
+          "fromEur": 824.362,
+          "fromGbp": 710.6015,
+          "fromPln": 3500,
+          "fromUsd": 966.5985,
+          "toChf": 970.9155,
+          "toEur": 1059.894,
+          "toGbp": 913.6305,
+          "toPln": 4500,
+          "toUsd": 1242.7695
+        }
+      ],
+      "categoryId": 14,
+      "multilocation": [
+        {
+          "city": "Poznań",
+          "slug": "kodland-nauczyciel-tutor-online-minecraft-education-poznan-ux",
+          "street": "Centrum",
+          "latitude": 52.4093634,
+          "longitude": 16.9317991
+        },
+        {
+          "city": "Lublin",
+          "slug": "kodland-nauczyciel-tutor-online-minecraft-education-lublin-ux",
+          "street": "Lipowa 13",
+          "latitude": 51.245033,
+          "longitude": 22.550885
+        },
+        {
+          "city": "Szczecin",
+          "slug": "kodland-nauczyciel-tutor-online-minecraft-education-szczecin-ux",
+          "street": "Centrum",
+          "latitude": 53.4330206,
+          "longitude": 14.5483543
+        },
+        {
+          "city": "Gdańsk",
+          "slug": "kodland-nauczyciel-tutor-online-minecraft-education-gdansk-ux",
+          "street": "Centrum",
+          "latitude": 54.3520252,
+          "longitude": 18.6466384
+        },
+        {
+          "city": "Katowice",
+          "slug": "kodland-nauczyciel-tutor-online-minecraft-education-katowice-ux",
+          "street": "Centrum",
+          "latitude": 50.2648919,
+          "longitude": 19.0237815
+        }
+      ],
+      "city": "Poznań",
+      "street": "Centrum",
+      "latitude": "52.4093634",
+      "longitude": "16.9317991",
+      "remoteInterview": false,
+      "companyName": "KODLAND",
+      "companyLogoThumbUrl": "https://imgproxy.justjoinit.tech/uiiI-uPsCvUlnH5Faj7OyCbVBlvUxbXi-K5eIN7aOJs/h:200/w:200/plain/https://public.justjoin.it/companies/logos/original/f270dd994ae4ef58c6bc5cdd29abd91a87d43411.jpg",
+      "publishedAt": "2026-04-29T07:00:10.584Z",
+      "lastPublishedAt": "2026-03-30T06:35:26.974Z",
+      "expiredAt": "2026-06-28T20:59:59.999Z",
+      "openToHireUkrainians": false,
+      "languages": [
+        {
+          "code": "pl",
+          "level": "c1"
+        }
+      ],
+      "applyMethod": "external",
+      "isSuperOffer": false,
+      "promotedPosition": null,
+      "promotedKeyFilters": []
+    },
+    {
+      "guid": "206ae7ec-6449-4fb5-9115-bb1ec1ba157f",
+      "slug": "rits-professional-services-ux-ui-designer-warszawa-ux-7abf9896",
+      "title": "UX/UI Designer",
+      "requiredSkills": null,
+      "niceToHaveSkills": null,
+      "workplaceType": "hybrid",
+      "workingTime": "full_time",
+      "experienceLevel": "senior",
+      "employmentTypes": [
+        {
+          "from": 90,
+          "to": 100,
+          "currency": "pln",
+          "type": "b2b",
+          "unit": "hour",
+          "gross": false,
+          "fromChf": 19.41831,
+          "fromEur": 21.19788,
+          "fromGbp": 18.27261,
+          "fromPln": 90,
+          "fromUsd": 24.85539,
+          "toChf": 21.5759,
+          "toEur": 23.5532,
+          "toGbp": 20.3029,
+          "toPln": 100,
+          "toUsd": 27.6171
+        }
+      ],
+      "categoryId": 14,
+      "multilocation": [
+        {
+          "city": "Warszawa",
+          "slug": "rits-professional-services-ux-ui-designer-warszawa-ux-7abf9896",
+          "street": "Warszawa",
+          "latitude": 52.2296756,
+          "longitude": 21.0122287
+        }
+      ],
+      "city": "Warszawa",
+      "street": "Warszawa",
+      "latitude": "52.2296756",
+      "longitude": "21.0122287",
+      "remoteInterview": true,
+      "companyName": "RITS Professional Services",
+      "companyLogoThumbUrl": "https://imgproxy.justjoinit.tech/LafTl_MeCWaAWPuPbktKxejN19c402krOnqHqFPzAiQ/h:200/w:200/plain/https://public.justjoin.it/companies/logos/original/f2ba2d96fabedd9025bf85126372dc27ecef96ed.png",
+      "publishedAt": "2026-04-29T09:00:02.279Z",
+      "lastPublishedAt": "2026-04-24T08:57:40.737Z",
+      "expiredAt": "2026-05-08T21:59:59.999Z",
+      "openToHireUkrainians": false,
+      "languages": [
+        {
+          "code": "pl",
+          "level": "c2"
+        }
+      ],
+      "applyMethod": "external",
+      "isSuperOffer": false,
+      "promotedPosition": null,
+      "promotedKeyFilters": []
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "totalItems": 155,
+    "totalPages": 8,
+    "prevPage": null,
+    "nextPage": 2
+  }
+}
