@@ -1,3 +1,6 @@
+# Bot state branch checkout — never commit on main.
+.state/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

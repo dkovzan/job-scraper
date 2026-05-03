@@ -1,0 +1,16 @@
+[telegram]
+bot_token_env     = "TELEGRAM_BOT_TOKEN"
+allowed_chats_env = "ALLOWED_CHAT_IDS"
+
+[state]
+seen_file          = "seen_jobs.json"
+subscriptions_file = "subscriptions.json"
+offset_file        = "tg_offset.txt"
+max_seen_ids       = 5000
+
+[defaults]
+seniority = ["junior", "mid", "regular", "młodszy"]
+locations = [
+  { city = "Kraków", modes = ["onsite", "hybrid", "remote"] },
+  { country = "PL", modes = ["remote"] },
+]
