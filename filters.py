@@ -34,15 +34,25 @@ def _matches_keywords(job: Job, profile: Profile) -> bool:
 
 
 def _matches_seniority(job: Job, defaults: DefaultsConfig) -> bool:
-    if job.seniority is None:
-        return True
-    seniority = _norm(job.seniority)
+    """Reject jobs whose seniority field OR title contains a senior-tier
+    keyword (senior/lead/principal/staff/head/starszy), unless that term is
+    explicitly allow-listed in ``defaults.seniority``.
+
+    Scanning the title too matters because boards like nofluffjobs and
+    theprotocol don't always expose a separate seniority field — and a
+    listing titled "Senior UX Designer" with ``seniority=None`` clearly is
+    not what a junior/mid user wants to see.
+    """
     allowed = {_norm(s) for s in defaults.seniority}
-    for term in _SENIOR_REJECTS:
-        if term in allowed:
-            continue
-        if _has_word(seniority, term):
-            return False
+    haystacks = [_norm(job.title)]
+    if job.seniority is not None:
+        haystacks.append(_norm(job.seniority))
+    for haystack in haystacks:
+        for term in _SENIOR_REJECTS:
+            if term in allowed:
+                continue
+            if _has_word(haystack, term):
+                return False
     return True
 
 

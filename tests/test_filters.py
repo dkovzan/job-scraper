@@ -50,7 +50,7 @@ def _job(
 
 
 def test_keyword_positive(ui_ux: Profile, defaults: DefaultsConfig):
-    assert match_job(_job(title="Senior UX Designer", seniority=None), ui_ux, defaults)
+    assert match_job(_job(title="UX Designer", seniority=None), ui_ux, defaults)
 
 
 def test_keyword_negative(ui_ux: Profile, defaults: DefaultsConfig):
@@ -104,6 +104,47 @@ def test_seniority_senior_kept_when_in_defaults(ui_ux: Profile):
         locations=(LocationClause(city="Kraków", country=None, modes=("hybrid",)),),
     )
     assert match_job(_job(seniority="Senior"), ui_ux, permissive)
+
+
+# ---------- seniority: title-based reject (catches "Senior X" with no seniority field) ----------
+
+
+def test_seniority_senior_in_title_rejected_when_field_missing(
+    ui_ux: Profile, defaults: DefaultsConfig
+):
+    """Boards like nofluffjobs/theprotocol sometimes leave the seniority field
+    blank but the title clearly says "Senior". We must catch that."""
+    assert not match_job(
+        _job(title="Senior UX Designer", seniority=None), ui_ux, defaults
+    )
+
+
+def test_seniority_lead_in_title_rejected_when_field_missing(
+    ui_ux: Profile, defaults: DefaultsConfig
+):
+    assert not match_job(_job(title="Lead UX Designer", seniority=None), ui_ux, defaults)
+
+
+def test_seniority_principal_in_title_rejected(ui_ux: Profile, defaults: DefaultsConfig):
+    assert not match_job(
+        _job(title="Principal Product Designer", seniority="mid"), ui_ux, defaults
+    )
+
+
+def test_seniority_starszy_in_title_rejected(ui_ux: Profile, defaults: DefaultsConfig):
+    assert not match_job(
+        _job(title="Starszy projektant UX", seniority=None), ui_ux, defaults
+    )
+
+
+def test_seniority_senior_in_title_kept_when_default_allows(ui_ux: Profile):
+    permissive = DefaultsConfig(
+        seniority=("senior", "mid"),
+        locations=(LocationClause(city="Kraków", country=None, modes=("hybrid",)),),
+    )
+    assert match_job(
+        _job(title="Senior UX Designer", seniority=None), ui_ux, permissive
+    )
 
 
 # ---------- location ----------
