@@ -28,7 +28,7 @@ def test_parse_returns_jobs(html):
         assert j.id.startswith("theprotocol.it:")
         assert j.title
         assert j.company
-        assert j.url.startswith("https://theprotocol.it/szczegoly/")
+        assert j.url.startswith("https://theprotocol.it/szczegoly/praca/")
 
 
 def test_ids_stable_across_runs(html):

@@ -25,7 +25,9 @@ from models import Job
 SOURCE = "theprotocol.it"
 
 _LISTING_URL = "https://theprotocol.it/filtry/ux-ui;sp/praca"
-_OFFER_BASE = "https://theprotocol.it/szczegoly/"
+# Offer-detail pages live under /szczegoly/praca/ — the bare /szczegoly/<slug>
+# variant 200s but redirects to the homepage client-side.
+_OFFER_BASE = "https://theprotocol.it/szczegoly/praca/"
 _TIMEOUT = 20
 _IMPERSONATE = "chrome120"
 
