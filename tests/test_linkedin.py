@@ -60,7 +60,9 @@ def test_parse_extracts_first_card_fields():
     assert first.id == "linkedin.com:3812345678"
     assert first.title == "Senior UX/UI Designer"
     assert first.company == "Acme Sp. z o.o."
-    assert first.url == "https://www.linkedin.com/jobs/view/senior-ux-ui-designer-at-acme-3812345678"
+    assert (
+        first.url == "https://www.linkedin.com/jobs/view/senior-ux-ui-designer-at-acme-3812345678"
+    )
     assert first.salary is None
     assert first.posted_at == datetime(2026, 5, 28)
 
@@ -104,10 +106,7 @@ def test_duplicate_cards_deduped():
 
 
 def test_parse_skips_card_without_id_or_title():
-    no_id = (
-        '<div class="base-card">'
-        '<h3 class="base-search-card__title">No URN No Link</h3></div>'
-    )
+    no_id = '<div class="base-card"><h3 class="base-search-card__title">No URN No Link</h3></div>'
     no_title = (
         '<div class="base-card" data-entity-urn="urn:li:jobPosting:1">'
         '<a class="base-card__full-link" href="https://www.linkedin.com/jobs/view/x-1"></a>'
