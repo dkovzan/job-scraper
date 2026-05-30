@@ -1,7 +1,12 @@
 from datetime import datetime
+from pathlib import Path
+
+import pytest
 
 from models import Job
 from scrapers.linkedin import _parse, fetch
+
+FIXTURE = Path(__file__).parent / "fixtures" / "linkedin_guest.html"
 
 SAMPLE_HTML = """
 <li>
@@ -125,3 +130,22 @@ def test_registered_in_scrapers():
     from scrapers import SCRAPERS, linkedin
 
     assert linkedin.fetch in SCRAPERS
+
+
+@pytest.fixture
+def fixture_html() -> str:
+    if not FIXTURE.exists():
+        pytest.skip("linkedin_guest.html fixture not captured")
+    return FIXTURE.read_text(encoding="utf-8")
+
+
+def test_fixture_parses_to_jobs(fixture_html):
+    jobs = _parse(fixture_html)
+    assert len(jobs) >= 1
+    for j in jobs:
+        assert j.source == "linkedin.com"
+        assert j.id.startswith("linkedin.com:")
+        assert j.title
+        # LinkedIn may return regional subdomains (e.g. pl.linkedin.com) instead
+        # of www.linkedin.com — accept any *.linkedin.com/jobs/view/ URL.
+        assert "linkedin.com/jobs/view/" in j.url

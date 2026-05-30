@@ -118,12 +118,31 @@ def capture_pracuj() -> None:
     print(f"wrote {out} ({len(r.text)} bytes)", file=sys.stderr)
 
 
+def capture_linkedin() -> None:
+    """LinkedIn TLS-fingerprints clients; use Chrome impersonation. The guest
+    endpoint returns an HTML fragment of ~10 job cards with no login."""
+    from curl_cffi import requests as cffi
+
+    url = (
+        "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search"
+        "?keywords=UX%2FUI%20designer&location=Poland&start=0"
+    )
+    print(f"GET {url}", file=sys.stderr)
+    r = cffi.get(url, impersonate="chrome120", timeout=20)
+    r.raise_for_status()
+    out = FIXTURES / "linkedin_guest.html"
+    FIXTURES.mkdir(parents=True, exist_ok=True)
+    out.write_text(r.text, encoding="utf-8")
+    print(f"wrote {out} ({len(r.text)} bytes)", file=sys.stderr)
+
+
 CAPTURES = {
     "justjoin": capture_justjoin,
     "nofluffjobs": capture_nofluffjobs,
     "bulldogjob": capture_bulldogjob,
     "theprotocol": capture_theprotocol,
     "pracuj": capture_pracuj,
+    "linkedin": capture_linkedin,
 }
 
 
