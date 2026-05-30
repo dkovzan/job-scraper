@@ -3,6 +3,8 @@ from pathlib import Path
 
 import pytest
 
+from config import load_config
+from filters import _matches_location
 from models import Job
 from scrapers.linkedin import _parse, fetch
 
@@ -146,3 +148,35 @@ def test_fixture_parses_to_jobs(fixture_html):
         assert j.id.startswith("linkedin.com:")
         assert j.title
         assert j.url.startswith("https://www.linkedin.com/jobs/view/")
+
+
+def test_anglicized_city_normalized_to_polish():
+    # LinkedIn serves "Cracow"/"Warsaw"; the scraper must emit the native Polish
+    # names so the diacritic-folding location filter can match them.
+    html = (
+        '<div class="base-card" data-entity-urn="urn:li:jobPosting:1">'
+        '<a class="base-card__full-link" href="https://www.linkedin.com/jobs/view/x-1"></a>'
+        '<h3 class="base-search-card__title">UX Designer</h3>'
+        '<h4 class="base-search-card__subtitle">Acme</h4>'
+        '<span class="job-search-card__location">Cracow, Lesser Poland, Poland</span>'
+        "</div>"
+    )
+    job = _parse(html)[0]
+    assert job.location == "Kraków, hybrid, onsite"
+
+
+def test_normalized_city_matches_default_location_filter():
+    # Integration: a LinkedIn Cracow job must pass the shipped default location
+    # filter (which tracks "Kraków"). This is the regression the fix closes.
+    html = (
+        '<div class="base-card" data-entity-urn="urn:li:jobPosting:2">'
+        '<a class="base-card__full-link" href="https://www.linkedin.com/jobs/view/y-2"></a>'
+        '<h3 class="base-search-card__title">UX Designer</h3>'
+        '<h4 class="base-search-card__subtitle">Acme</h4>'
+        '<span class="job-search-card__location">Cracow, Lesser Poland, Poland</span>'
+        "</div>"
+    )
+    job = _parse(html)[0]
+    cfg_path = Path(__file__).parent.parent / "config.toml"
+    defaults = load_config(str(cfg_path)).defaults
+    assert _matches_location(job, defaults) is True

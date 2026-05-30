@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import logging
 import re
+import unicodedata
 from datetime import datetime
 
 from curl_cffi import requests as cffi
@@ -43,6 +44,20 @@ _SENIORITY_PATTERN = re.compile(
     r"\b(junior|mid|regular|senior|lead|principal|staff|head|starszy|młodszy)\b",
     re.IGNORECASE,
 )
+
+# LinkedIn anglicizes / strips diacritics from Polish city names ("Warsaw",
+# "Cracow"). The downstream location filter folds diacritics and matches on
+# word boundaries against config cities like "Kraków", so we restore the native
+# Polish form here. Keyed by diacritic-free lowercase name.
+_CITY_EN_TO_PL: dict[str, str] = {
+    "warsaw": "Warszawa",
+    "cracow": "Kraków",
+    "krakow": "Kraków",
+    "lodz": "Łódź",
+    "gdansk": "Gdańsk",
+    "wroclaw": "Wrocław",
+    "poznan": "Poznań",
+}
 
 log = logging.getLogger(__name__)
 
@@ -113,6 +128,13 @@ def _clean_url(card: Node) -> str:
     return _HOST.sub("https://www.linkedin.com", href)
 
 
+def _normalize_city(city: str) -> str:
+    key = "".join(
+        c for c in unicodedata.normalize("NFKD", city) if not unicodedata.combining(c)
+    ).casefold()
+    return _CITY_EN_TO_PL.get(key, city)
+
+
 def _format_location(raw: str) -> str:
     raw = raw.strip()
     if not raw:
@@ -120,7 +142,7 @@ def _format_location(raw: str) -> str:
     if _REMOTE.search(raw):
         return "Remote, PL"
     # Take the leading city token (LinkedIn gives "City, Region, Country").
-    city = raw.split(",", 1)[0].strip()
+    city = _normalize_city(raw.split(",", 1)[0].strip())
     return f"{city}, hybrid, onsite"
 
 
