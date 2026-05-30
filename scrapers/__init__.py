@@ -7,7 +7,7 @@ from collections.abc import Callable
 
 from models import Job
 
-from . import bulldogjob, justjoin, nofluffjobs, pracuj, theprotocol
+from . import bulldogjob, justjoin, linkedin, nofluffjobs, pracuj, theprotocol
 
 SCRAPERS: list[Callable[[], list[Job]]] = [
     justjoin.fetch,
@@ -15,4 +15,5 @@ SCRAPERS: list[Callable[[], list[Job]]] = [
     bulldogjob.fetch,
     theprotocol.fetch,
     pracuj.fetch,
+    linkedin.fetch,
 ]
