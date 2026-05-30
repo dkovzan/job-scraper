@@ -146,6 +146,4 @@ def test_fixture_parses_to_jobs(fixture_html):
         assert j.source == "linkedin.com"
         assert j.id.startswith("linkedin.com:")
         assert j.title
-        # LinkedIn may return regional subdomains (e.g. pl.linkedin.com) instead
-        # of www.linkedin.com — accept any *.linkedin.com/jobs/view/ URL.
-        assert "linkedin.com/jobs/view/" in j.url
+        assert j.url.startswith("https://www.linkedin.com/jobs/view/")

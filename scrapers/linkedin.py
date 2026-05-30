@@ -37,6 +37,7 @@ _IMPERSONATE = "chrome120"
 
 _URN_ID = re.compile(r"urn:li:jobPosting:(\d+)")
 _URL_ID = re.compile(r"/jobs/view/[^/]*?(\d+)")
+_HOST = re.compile(r"^https?://[\w.]*\blinkedin\.com", re.IGNORECASE)
 _REMOTE = re.compile(r"\(remote\)|^remote\b", re.IGNORECASE)
 _SENIORITY_PATTERN = re.compile(
     r"\b(junior|mid|regular|senior|lead|principal|staff|head|starszy|młodszy)\b",
@@ -106,7 +107,10 @@ def _extract_id(card: Node) -> str | None:
 def _clean_url(card: Node) -> str:
     link = card.css_first("a.base-card__full-link")
     href = (link.attributes.get("href") if link else "") or ""
-    return href.split("?", 1)[0]
+    href = href.split("?", 1)[0]
+    # LinkedIn's guest API serves regional hosts (e.g. pl.linkedin.com);
+    # normalize to the canonical www host so URLs are deterministic.
+    return _HOST.sub("https://www.linkedin.com", href)
 
 
 def _format_location(raw: str) -> str:
