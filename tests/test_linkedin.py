@@ -119,3 +119,9 @@ def test_parse_handles_empty_html():
 
 def test_fetch_is_callable():
     assert callable(fetch)
+
+
+def test_registered_in_scrapers():
+    from scrapers import SCRAPERS, linkedin
+
+    assert linkedin.fetch in SCRAPERS
