@@ -27,6 +27,7 @@ from models import Job
 
 SOURCE = "linkedin.com"
 
+# First page only (~25 cards); pagination is intentionally out of scope.
 _SEARCH_URL = (
     "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search"
     "?keywords=UX%2FUI%20designer&location=Poland&start=0"
@@ -35,7 +36,8 @@ _TIMEOUT = 20
 _IMPERSONATE = "chrome120"
 
 _URN_ID = re.compile(r"urn:li:jobPosting:(\d+)")
-_URL_ID = re.compile(r"/jobs/view/(?:[^/]*-)?(\d+)")
+_URL_ID = re.compile(r"/jobs/view/[^/]*?(\d+)")
+_REMOTE = re.compile(r"\(remote\)|^remote\b", re.IGNORECASE)
 _SENIORITY_PATTERN = re.compile(
     r"\b(junior|mid|regular|senior|lead|principal|staff|head|starszy|młodszy)\b",
     re.IGNORECASE,
@@ -111,7 +113,7 @@ def _format_location(raw: str) -> str:
     raw = raw.strip()
     if not raw:
         return ""
-    if "remote" in raw.lower():
+    if _REMOTE.search(raw):
         return "Remote, PL"
     # Take the leading city token (LinkedIn gives "City, Region, Country").
     city = raw.split(",", 1)[0].strip()
