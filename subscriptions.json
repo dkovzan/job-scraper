@@ -1,6 +1,18 @@
 {
   "549849116": {
-    "profiles": []
+    "profiles": [
+      {
+        "name": "ui-ux1",
+        "keywords": [
+          "UI UX product designer"
+        ],
+        "seniority": [
+          "junior",
+          "middle",
+          "senior"
+        ]
+      }
+    ]
   },
   "547533994": {
     "profiles": [
