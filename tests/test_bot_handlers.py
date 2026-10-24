@@ -146,6 +146,57 @@ def test_subscribe_handles_empty_comma_segments():
     assert subs["1"][0].keywords == ["UX Designer", "UI Designer"]
 
 
+def test_subscribe_accepts_seniority_option():
+    subs: dict[str, list[Profile]] = {}
+    reply = handle_command(
+        _cmd(
+            "subscribe",
+            args="ui-ux UX Designer, Product Designer seniority=junior, middle",
+        ),
+        subs,
+        ALLOWED,
+    )
+    assert "seniority=junior,middle" in reply.text
+    assert subs["1"] == [
+        Profile(
+            name="ui-ux",
+            keywords=["UX Designer", "Product Designer"],
+            seniority=("junior", "middle"),
+        )
+    ]
+
+
+def test_subscribe_accepts_seniority_all():
+    subs: dict[str, list[Profile]] = {}
+    handle_command(_cmd("subscribe", args="ui-ux UX Designer seniority=all"), subs, ALLOWED)
+    assert subs["1"][0].seniority == ("junior", "middle", "senior")
+
+
+def test_subscribe_rejects_invalid_seniority_without_mutating():
+    subs: dict[str, list[Profile]] = {}
+    reply = handle_command(
+        _cmd("subscribe", args="ui-ux UX Designer seniority=intern"),
+        subs,
+        ALLOWED,
+    )
+    assert "Usage" in reply.text
+    assert subs == {}
+
+
+def test_list_shows_profile_seniority():
+    subs = {
+        "1": [
+            Profile(
+                name="ui-ux",
+                keywords=["UX Designer"],
+                seniority=("junior", "middle"),
+            )
+        ]
+    }
+    reply = handle_command(_cmd("list"), subs, ALLOWED)
+    assert "seniority=junior,middle" in reply.text
+
+
 # ---------- /unsubscribe ----------
 
 

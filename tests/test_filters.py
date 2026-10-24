@@ -10,7 +10,6 @@ from models import Job, Profile
 @pytest.fixture
 def defaults() -> DefaultsConfig:
     return DefaultsConfig(
-        seniority=("junior", "mid", "regular", "młodszy"),
         locations=(
             LocationClause(city="Kraków", country=None, modes=("onsite", "hybrid", "remote")),
             LocationClause(city=None, country="PL", modes=("remote",)),
@@ -82,68 +81,48 @@ def test_seniority_missing_kept(ui_ux: Profile, defaults: DefaultsConfig):
     assert match_job(_job(seniority=None), ui_ux, defaults)
 
 
-def test_seniority_in_defaults_kept(ui_ux: Profile, defaults: DefaultsConfig):
+def test_unknown_seniority_is_kept_for_selected_level(defaults: DefaultsConfig):
+    junior_only = Profile(name="ui-ux", keywords=["UX Designer"], seniority=("junior",))
+    assert match_job(_job(seniority=None), junior_only, defaults)
+
+
+def test_default_profile_accepts_all_levels(ui_ux: Profile, defaults: DefaultsConfig):
     assert match_job(_job(seniority="junior"), ui_ux, defaults)
+    assert match_job(_job(seniority="mid"), ui_ux, defaults)
+    assert match_job(_job(seniority="Senior"), ui_ux, defaults)
 
 
-def test_seniority_senior_rejected(ui_ux: Profile, defaults: DefaultsConfig):
-    assert not match_job(_job(seniority="Senior"), ui_ux, defaults)
+@pytest.mark.parametrize(
+    ("level", "seniority", "title"),
+    [
+        ("junior", "junior", "UX Designer"),
+        ("junior", None, "Młodszy UX Designer"),
+        ("middle", "mid", "UX Designer"),
+        ("middle", "regular", "UX Designer"),
+        ("senior", "Senior", "UX Designer"),
+        ("senior", None, "Lead UX Designer"),
+        ("senior", None, "Starszy UX Designer"),
+    ],
+)
+def test_profile_seniority_selection_filters_recognized_levels(
+    defaults: DefaultsConfig, level: str, seniority: str | None, title: str
+):
+    profile = Profile(name="ui-ux", keywords=["UX Designer"], seniority=(level,))
+    assert match_job(_job(seniority=seniority, title=title), profile, defaults)
+    other_level = next(item for item in ("junior", "middle", "senior") if item != level)
+    other_profile = Profile(name="ui-ux", keywords=["UX Designer"], seniority=(other_level,))
+    assert not match_job(_job(seniority=seniority, title=title), other_profile, defaults)
 
 
-def test_seniority_lead_rejected(ui_ux: Profile, defaults: DefaultsConfig):
-    assert not match_job(_job(seniority="Lead Designer"), ui_ux, defaults)
+# ---------- seniority labels in titles ----------
 
 
-def test_seniority_starszy_rejected(ui_ux: Profile, defaults: DefaultsConfig):
-    assert not match_job(_job(seniority="Starszy projektant"), ui_ux, defaults)
-
-
-def test_seniority_senior_kept_when_in_defaults(ui_ux: Profile):
-    permissive = DefaultsConfig(
-        seniority=("senior", "mid"),
-        locations=(LocationClause(city="Kraków", country=None, modes=("hybrid",)),),
-    )
-    assert match_job(_job(seniority="Senior"), ui_ux, permissive)
-
-
-# ---------- seniority: title-based reject (catches "Senior X" with no seniority field) ----------
-
-
-def test_seniority_senior_in_title_rejected_when_field_missing(
+def test_seniority_senior_in_title_kept_by_default(
     ui_ux: Profile, defaults: DefaultsConfig
 ):
-    """Boards like nofluffjobs/theprotocol sometimes leave the seniority field
-    blank but the title clearly says "Senior". We must catch that."""
-    assert not match_job(
-        _job(title="Senior UX Designer", seniority=None), ui_ux, defaults
-    )
-
-
-def test_seniority_lead_in_title_rejected_when_field_missing(
-    ui_ux: Profile, defaults: DefaultsConfig
-):
-    assert not match_job(_job(title="Lead UX Designer", seniority=None), ui_ux, defaults)
-
-
-def test_seniority_principal_in_title_rejected(ui_ux: Profile, defaults: DefaultsConfig):
-    assert not match_job(
-        _job(title="Principal Product Designer", seniority="mid"), ui_ux, defaults
-    )
-
-
-def test_seniority_starszy_in_title_rejected(ui_ux: Profile, defaults: DefaultsConfig):
-    assert not match_job(
-        _job(title="Starszy projektant UX", seniority=None), ui_ux, defaults
-    )
-
-
-def test_seniority_senior_in_title_kept_when_default_allows(ui_ux: Profile):
-    permissive = DefaultsConfig(
-        seniority=("senior", "mid"),
-        locations=(LocationClause(city="Kraków", country=None, modes=("hybrid",)),),
-    )
+    """Title-only level labels are classified when a board omits the field."""
     assert match_job(
-        _job(title="Senior UX Designer", seniority=None), ui_ux, permissive
+        _job(title="Senior UX Designer", seniority=None), ui_ux, defaults
     )
 
 
@@ -160,7 +139,6 @@ def test_location_city_diacritic_insensitive(ui_ux: Profile, defaults: DefaultsC
 
 def test_location_city_wrong_mode_rejected(ui_ux: Profile):
     only_hybrid = DefaultsConfig(
-        seniority=("junior", "mid"),
         locations=(LocationClause(city="Kraków", country=None, modes=("hybrid",)),),
     )
     assert not match_job(_job(location="Kraków, onsite"), ui_ux, only_hybrid)
@@ -180,7 +158,7 @@ def test_location_other_city_rejected(ui_ux: Profile, defaults: DefaultsConfig):
 
 
 def test_location_no_clauses_kept(ui_ux: Profile):
-    no_loc = DefaultsConfig(seniority=("junior",), locations=())
+    no_loc = DefaultsConfig(locations=())
     assert match_job(_job(seniority="junior"), ui_ux, no_loc)
 
 
@@ -188,10 +166,11 @@ def test_location_no_clauses_kept(ui_ux: Profile):
 
 
 def test_match_requires_all_three_filters(ui_ux: Profile, defaults: DefaultsConfig):
+    junior_only = Profile(name=ui_ux.name, keywords=ui_ux.keywords, seniority=("junior",))
     # Right keyword, wrong seniority.
     assert not match_job(
         _job(title="UX Designer", seniority="Senior", location="Kraków, hybrid"),
-        ui_ux,
+        junior_only,
         defaults,
     )
     # Right keyword + seniority, wrong location.
@@ -202,7 +181,7 @@ def test_match_requires_all_three_filters(ui_ux: Profile, defaults: DefaultsConf
     )
     # All three OK.
     assert match_job(
-        _job(title="UX Designer", seniority="mid", location="Kraków, hybrid"),
-        ui_ux,
+        _job(title="UX Designer", seniority="junior", location="Kraków, hybrid"),
+        junior_only,
         defaults,
     )

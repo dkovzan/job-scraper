@@ -43,15 +43,15 @@ add later if it surfaces unique listings), `jjit.pl` (same site as justjoin.it).
 ## Subscriptions & filtering
 
 Filtering is driven by **profiles**, scoped per user (chat ID). Each profile
-has a `name` and a list of `keywords`; seniority and location come from global
-defaults. For a given user, a posting is kept if it matches **any** of their
-profiles.
+has a `name`, a list of `keywords`, and a seniority selection (all levels by
+default); location comes from global defaults. For a given user, a posting is
+kept if it matches **any** of their profiles.
 
 Three files cooperate:
 
 | File                 | Edited by | Scope    | Holds                                                |
 | -------------------- | --------- | -------- | ---------------------------------------------------- |
-| `config.toml`        | you (PR)  | global   | sources, telegram setup, **default** seniority/locations |
+| `config.toml`        | you (PR)  | global   | sources, telegram setup, default locations |
 | `subscriptions.json` | the bot   | per-user | active profiles, keyed by chat ID                    |
 | `seen_jobs.json`     | the bot   | per-user | already-sent job IDs, keyed by chat ID               |
 
@@ -73,7 +73,6 @@ offset_file        = "tg_offset.txt"     # Telegram getUpdates cursor
 max_seen_ids       = 5000                # trim oldest per user beyond this
 
 [defaults]
-seniority = ["junior", "mid", "regular", "młodszy"]
 locations = [
   { city = "Kraków", modes = ["onsite", "hybrid", "remote"] },
   { country = "PL",  modes = ["remote"] },
@@ -94,13 +93,18 @@ entry simply receives nothing until they `/subscribe`.
         "keywords": [
           "UI Designer", "UX Designer", "UI/UX", "UX/UI", "Product Designer",
           "Projektant UX", "Projektant UI", "Projektant interfejsów", "Designer produktu"
-        ]
+        ],
+        "seniority": ["junior", "middle", "senior"]
       }
     ]
   },
   "987654321": {
     "profiles": [
-      { "name": "test-auto", "keywords": ["Test Automation", "QA Automation", "SDET"] }
+      {
+        "name": "test-auto",
+        "keywords": ["Test Automation", "QA Automation", "SDET"],
+        "seniority": ["junior", "middle", "senior"]
+      }
     ]
   }
 }
@@ -123,10 +127,10 @@ overlapping keywords).
 
 - **`keywords`** — case-insensitive substring match against title (and category
   field if the source provides one). Diacritics-insensitive (`Kraków` == `Krakow`).
-- **`seniority`** (from defaults) — match against the listing's seniority field.
-  If the listing has no seniority, **keep it** (don't false-negative on missing
-  data). Implicitly rejects anything matching `senior`, `lead`, `principal`,
-  `staff`, `head`, `starszy` *unless* defaults explicitly list those terms.
+- **`seniority`** (per profile) — defaults to `junior`, `middle`, and `senior`.
+  `mid` and `regular` map to `middle`; `lead`, `principal`, `staff`, `head`,
+  and `starszy` map to `senior`. A listing with no recognized level is kept
+  regardless of selection.
 - **`locations`** (from defaults) — a list of clauses, OR-ed together:
   - `{ city = "...", modes = [...] }` — listing's city matches AND its work
     mode is in `modes`, **or**
@@ -134,12 +138,6 @@ overlapping keywords).
     is country-wide) AND mode is in `modes`. `modes` values: `onsite`,
     `hybrid`, `remote`.
 - No filter on employment type or language (intentional).
-
-### Per-profile overrides (future hook)
-
-Profile entries may later grow optional `seniority` / `locations` keys that
-override the defaults. POC keeps profiles flat (just `name` + `keywords`), with
-defaults applied uniformly per user.
 
 ## Bot interaction
 
@@ -157,7 +155,7 @@ You never see, edit, or get notifications from another user's profiles.
 | `/start`                                      | If chat ID is allowlisted: short help. Else: replies with the user's chat ID and "ask the owner to add me". |
 | `/help`                                       | Lists commands.                                       |
 | `/list`                                       | Replies with **your** current profiles.               |
-| `/subscribe <name> <keyword>, <keyword>, ...` | Adds (or replaces) a profile in your slot. Names are slug-like (`ui-ux`, `test-auto`). |
+| `/subscribe <name> <keyword>, <keyword>, ... [seniority=all\|junior,middle,senior]` | Adds (or replaces) a profile. Omit the option for all levels, or select any comma-separated subset. Names are slug-like (`ui-ux`, `test-auto`). |
 | `/unsubscribe <name>`                         | Removes one of your profiles by name.                 |
 | `/whoami`                                     | Replies with the chat ID — handy for adding new allowed users. |
 

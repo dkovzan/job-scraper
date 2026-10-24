@@ -12,7 +12,7 @@ import logging
 import re
 
 import httpx
-from selectolax.parser import HTMLParser, Node
+from selectolax.lexbor import LexborHTMLParser, LexborNode
 
 from models import Job
 
@@ -46,7 +46,7 @@ def fetch() -> list[Job]:
 
 
 def _parse(html: str) -> list[Job]:
-    parser = HTMLParser(html)
+    parser = LexborHTMLParser(html)
     cards = [a for a in parser.css("a") if (a.attributes.get("href") or "").startswith("/pl/job/")]
     jobs: list[Job] = []
     seen_slugs: set[str] = set()
@@ -67,7 +67,7 @@ def _parse(html: str) -> list[Job]:
     return jobs
 
 
-def _to_job(card: Node) -> Job | None:
+def _to_job(card: LexborNode) -> Job | None:
     href = card.attributes.get("href")
     if not href or not href.startswith("/pl/job/"):
         return None
@@ -100,7 +100,7 @@ def _to_job(card: Node) -> Job | None:
     )
 
 
-def _text(node: Node | None) -> str:
+def _text(node: LexborNode | None) -> str:
     if node is None:
         return ""
     return " ".join(node.text(strip=True).split())

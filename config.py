@@ -27,7 +27,6 @@ class LocationClause:
 
 @dataclass(frozen=True)
 class DefaultsConfig:
-    seniority: tuple[str, ...]
     locations: tuple[LocationClause, ...]
 
 
@@ -90,14 +89,10 @@ def _parse_state(raw: dict[str, Any]) -> StateConfig:
 
 def _parse_defaults(raw: dict[str, Any]) -> DefaultsConfig:
     section = _require_section(raw, "defaults")
-    seniority = _require_key(section, "defaults", "seniority")
     locations_raw = _require_key(section, "defaults", "locations")
-    if not isinstance(seniority, list):
-        raise ValueError("config: defaults.seniority must be a list")
     if not isinstance(locations_raw, list):
         raise ValueError("config: defaults.locations must be a list")
     return DefaultsConfig(
-        seniority=tuple(str(s) for s in seniority),
         locations=tuple(_parse_location(loc, i) for i, loc in enumerate(locations_raw)),
     )
 

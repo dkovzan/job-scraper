@@ -12,7 +12,7 @@ import logging
 import re
 
 from curl_cffi import requests as cffi
-from selectolax.parser import HTMLParser, Node
+from selectolax.lexbor import LexborHTMLParser, LexborNode
 
 from models import Job
 
@@ -70,7 +70,7 @@ def _is_cf_challenge(response) -> bool:
 
 
 def _parse(html: str) -> list[Job]:
-    parser = HTMLParser(html)
+    parser = LexborHTMLParser(html)
     cards = parser.css("[data-test='default-offer']")
     jobs: list[Job] = []
     seen_ids: set[str] = set()
@@ -87,7 +87,7 @@ def _parse(html: str) -> list[Job]:
     return jobs
 
 
-def _to_job(card: Node) -> Job | None:
+def _to_job(card: LexborNode) -> Job | None:
     offer_id = card.attributes.get("data-test-offerid")
     if not offer_id:
         return None
@@ -128,7 +128,7 @@ def _to_job(card: Node) -> Job | None:
     )
 
 
-def _text(node: Node | None) -> str:
+def _text(node: LexborNode | None) -> str:
     if node is None:
         return ""
     return _normalise_whitespace(node.text(strip=True))
@@ -138,7 +138,7 @@ def _normalise_whitespace(s: str) -> str:
     return " ".join(s.split())
 
 
-def _collect_additional_info(card: Node) -> list[str]:
+def _collect_additional_info(card: LexborNode) -> list[str]:
     """Pracuj puts seniority / work-mode / contract type into a series of
     ``offer-additional-info-N`` spans (N = 0..7+). Position varies, so we
     grab them all and let extractors search by keyword."""
@@ -159,7 +159,7 @@ def _extract_seniority(infos: list[str], title: str) -> str | None:
     return m.group(1).lower() if m else None
 
 
-def _format_location(card: Node, infos: list[str]) -> str:
+def _format_location(card: LexborNode, infos: list[str]) -> str:
     """Build a location string the same way other Polish-board scrapers do:
     fully remote → ``Remote, PL``; otherwise ``<city>, <mode>`` (default to
     ``hybrid, onsite`` if no explicit work-mode tag was present)."""

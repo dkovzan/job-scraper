@@ -9,7 +9,6 @@ offset_file        = "tg_offset.txt"
 max_seen_ids       = 5000
 
 [defaults]
-seniority = ["junior", "mid", "regular", "młodszy"]
 locations = [
   { city = "Kraków", modes = ["onsite", "hybrid", "remote"] },
   { country = "PL", modes = ["remote"] },

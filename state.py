@@ -44,7 +44,14 @@ def load_subscriptions(path: str | Path) -> dict[str, list[Profile]]:
 def save_subscriptions(path: str | Path, data: dict[str, list[Profile]]) -> None:
     out = {
         str(chat_id): {
-            "profiles": [{"name": pr.name, "keywords": list(pr.keywords)} for pr in profiles]
+            "profiles": [
+                {
+                    "name": pr.name,
+                    "keywords": list(pr.keywords),
+                    "seniority": list(pr.seniority),
+                }
+                for pr in profiles
+            ]
         }
         for chat_id, profiles in data.items()
     }
@@ -52,7 +59,11 @@ def save_subscriptions(path: str | Path, data: dict[str, list[Profile]]) -> None
 
 
 def _profile_from_dict(p: dict[str, Any]) -> Profile:
-    return Profile(name=str(p["name"]), keywords=[str(k) for k in p.get("keywords", [])])
+    return Profile(
+        name=str(p["name"]),
+        keywords=[str(k) for k in p.get("keywords", [])],
+        seniority=tuple(p.get("seniority", ("junior", "middle", "senior"))),
+    )
 
 
 def _is_valid_profile_dict(p: Any) -> bool:
@@ -60,6 +71,11 @@ def _is_valid_profile_dict(p: Any) -> bool:
         isinstance(p, dict)
         and isinstance(p.get("name"), str)
         and isinstance(p.get("keywords", []), list)
+        and isinstance(p.get("seniority", ["junior", "middle", "senior"]), list)
+        and all(
+            isinstance(level, str) and level in {"junior", "middle", "senior"}
+            for level in p.get("seniority", ["junior", "middle", "senior"])
+        )
     )
 
 

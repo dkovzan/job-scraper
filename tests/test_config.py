@@ -18,9 +18,6 @@ def test_loads_real_config_toml():
     assert cfg.state.offset_file == "tg_offset.txt"
     assert cfg.state.max_seen_ids == 5000
 
-    assert "junior" in cfg.defaults.seniority
-    assert "mid" in cfg.defaults.seniority
-
     krakow = next((loc for loc in cfg.defaults.locations if loc.city == "Kraków"), None)
     assert krakow is not None
     assert "hybrid" in krakow.modes
@@ -69,7 +66,6 @@ def test_location_clause_requires_city_or_country(tmp_path: Path):
         'offset_file = "o"\n'
         "max_seen_ids = 10\n"
         "[defaults]\n"
-        'seniority = ["junior"]\n'
         'locations = [ { modes = ["remote"] } ]\n',
         encoding="utf-8",
     )

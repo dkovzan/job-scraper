@@ -29,9 +29,39 @@ def test_subscriptions_file_format_matches_spec(tmp_path: Path):
     raw = json.loads(path.read_text(encoding="utf-8"))
     assert raw == {
         "123456789": {
-            "profiles": [{"name": "ui-ux", "keywords": ["UI Designer", "UX Designer"]}],
+            "profiles": [
+                {
+                    "name": "ui-ux",
+                    "keywords": ["UI Designer", "UX Designer"],
+                    "seniority": ["junior", "middle", "senior"],
+                }
+            ],
         }
     }
+
+
+def test_old_subscription_without_seniority_defaults_to_all(tmp_path: Path):
+    path = tmp_path / "subs.json"
+    path.write_text(
+        json.dumps(
+            {"123": {"profiles": [{"name": "ui-ux", "keywords": ["UX Designer"]}]}}
+        ),
+        encoding="utf-8",
+    )
+    assert state.load_subscriptions(path) == {
+        "123": [Profile(name="ui-ux", keywords=["UX Designer"])]
+    }
+
+
+def test_subscription_seniority_round_trips(tmp_path: Path):
+    path = tmp_path / "subs.json"
+    data = {
+        "123": [
+            Profile(name="ui-ux", keywords=["UX Designer"], seniority=("junior", "middle"))
+        ]
+    }
+    state.save_subscriptions(path, data)
+    assert state.load_subscriptions(path) == data
 
 
 def test_subscriptions_missing_file_returns_empty(tmp_path: Path):

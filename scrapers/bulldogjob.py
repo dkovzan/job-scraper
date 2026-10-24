@@ -17,7 +17,7 @@ import logging
 from typing import Any
 
 import httpx
-from selectolax.parser import HTMLParser
+from selectolax.lexbor import LexborHTMLParser
 
 from models import Job
 
@@ -44,7 +44,7 @@ def fetch() -> list[Job]:
 
 
 def _parse(html: str) -> list[Job]:
-    parser = HTMLParser(html)
+    parser = LexborHTMLParser(html)
     nd = parser.css_first("script#__NEXT_DATA__")
     if nd is None:
         return []

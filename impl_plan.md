@@ -87,7 +87,7 @@ config.
 - Missing-key tests assert helpful error messages.
 - `Config` exposes typed attributes for everything the rest of the code needs:
   `telegram.bot_token_env`, `telegram.allowed_chats_env`, `state.*`,
-  `defaults.seniority`, `defaults.locations`.
+  `defaults.locations`.
 
 **Spec refs**: [Subscriptions & filtering](SPEC.md#subscriptions--filtering).
 

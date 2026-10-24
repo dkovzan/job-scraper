@@ -22,7 +22,7 @@ import unicodedata
 from datetime import datetime
 
 from curl_cffi import requests as cffi
-from selectolax.parser import HTMLParser, Node
+from selectolax.lexbor import LexborHTMLParser, LexborNode
 
 from models import Job
 
@@ -63,7 +63,7 @@ log = logging.getLogger(__name__)
 
 
 def _parse(html: str) -> list[Job]:
-    parser = HTMLParser(html)
+    parser = LexborHTMLParser(html)
     cards = parser.css("div.base-card")
     jobs: list[Job] = []
     seen_ids: set[str] = set()
@@ -80,7 +80,7 @@ def _parse(html: str) -> list[Job]:
     return jobs
 
 
-def _to_job(card: Node) -> Job | None:
+def _to_job(card: LexborNode) -> Job | None:
     job_id = _extract_id(card)
     if job_id is None:
         return None
@@ -108,7 +108,7 @@ def _to_job(card: Node) -> Job | None:
     )
 
 
-def _extract_id(card: Node) -> str | None:
+def _extract_id(card: LexborNode) -> str | None:
     urn = card.attributes.get("data-entity-urn") or ""
     m = _URN_ID.search(urn)
     if m:
@@ -119,7 +119,7 @@ def _extract_id(card: Node) -> str | None:
     return m.group(1) if m else None
 
 
-def _clean_url(card: Node) -> str:
+def _clean_url(card: LexborNode) -> str:
     link = card.css_first("a.base-card__full-link")
     href = (link.attributes.get("href") if link else "") or ""
     href = href.split("?", 1)[0]
@@ -151,7 +151,7 @@ def _extract_seniority(title: str) -> str | None:
     return m.group(1).lower() if m else None
 
 
-def _parse_dt(card: Node) -> datetime | None:
+def _parse_dt(card: LexborNode) -> datetime | None:
     t = card.css_first("time")
     dt = (t.attributes.get("datetime") if t else "") or ""
     if not dt:
@@ -162,7 +162,7 @@ def _parse_dt(card: Node) -> datetime | None:
         return None
 
 
-def _text(node: Node | None) -> str:
+def _text(node: LexborNode | None) -> str:
     if node is None:
         return ""
     return " ".join(node.text(strip=True).split())

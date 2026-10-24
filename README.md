@@ -99,6 +99,7 @@ Polish summer time, 1h earlier in winter — GH Actions cron has no DST).
 1. The new user opens the bot in Telegram and sends any message (or
    `/whoami`). On the next tick the bot replies with their chat ID.
 2. Append the chat ID to `ALLOWED_CHAT_IDS` (comma-separated) and save.
-3. They can now `/subscribe <name> <kw>, <kw>, ...`. Their slot in
-   `subscriptions.json` is created lazily on the first `/subscribe`.
-
+3. They can now `/subscribe <name> <kw>, <kw>, ...`, optionally ending with
+   `seniority=junior,middle` or `seniority=senior`. By default, all three
+   levels are included. Their slot in `subscriptions.json` is created lazily
+   on the first `/subscribe`.

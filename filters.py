@@ -4,24 +4,19 @@ import unicodedata
 from config import DefaultsConfig, LocationClause
 from models import Job, Profile
 
-# Implicit reject list: any seniority field that contains one of these as a word
-# is rejected, unless the term is also explicitly listed in defaults.seniority.
-_SENIOR_REJECTS: tuple[str, ...] = (
-    "senior",
-    "lead",
-    "principal",
-    "staff",
-    "head",
-    "starszy",
-)
+_SENIORITY_TERMS: dict[str, tuple[str, ...]] = {
+    "junior": ("junior", "mlodszy", "młodszy"),
+    "middle": ("middle", "mid", "regular"),
+    "senior": ("senior", "lead", "principal", "staff", "head", "starszy"),
+}
 
 
 def match_job(job: Job, profile: Profile, defaults: DefaultsConfig) -> bool:
-    """Return True iff the listing matches the profile's keywords AND the
-    global default seniority and location filters. Pure function — no I/O."""
+    """Return True iff the listing matches the profile's keywords and
+    seniority, and the global default location filter. Pure function — no I/O."""
     return (
         _matches_keywords(job, profile)
-        and _matches_seniority(job, defaults)
+        and _matches_seniority(job, profile)
         and _matches_location(job, defaults)
     )
 
@@ -33,27 +28,21 @@ def _matches_keywords(job: Job, profile: Profile) -> bool:
     return any(_norm(kw) in haystack for kw in profile.keywords)
 
 
-def _matches_seniority(job: Job, defaults: DefaultsConfig) -> bool:
-    """Reject jobs whose seniority field OR title contains a senior-tier
-    keyword (senior/lead/principal/staff/head/starszy), unless that term is
-    explicitly allow-listed in ``defaults.seniority``.
-
-    Scanning the title too matters because boards like nofluffjobs and
-    theprotocol don't always expose a separate seniority field — and a
-    listing titled "Senior UX Designer" with ``seniority=None`` clearly is
-    not what a junior/mid user wants to see.
-    """
-    allowed = {_norm(s) for s in defaults.seniority}
-    haystacks = [_norm(job.title)]
+def _matches_seniority(job: Job, profile: Profile) -> bool:
+    """Filter recognized levels by profile; unclassified listings stay eligible."""
+    haystacks = [job.title]
     if job.seniority is not None:
-        haystacks.append(_norm(job.seniority))
-    for haystack in haystacks:
-        for term in _SENIOR_REJECTS:
-            if term in allowed:
-                continue
-            if _has_word(haystack, term):
-                return False
-    return True
+        haystacks.append(job.seniority)
+    detected = {
+        level
+        for level, terms in _SENIORITY_TERMS.items()
+        if any(
+            _has_word(_norm(haystack), _norm(term))
+            for haystack in haystacks
+            for term in terms
+        )
+    }
+    return not detected or bool(detected.intersection(profile.seniority))
 
 
 def _matches_location(job: Job, defaults: DefaultsConfig) -> bool:

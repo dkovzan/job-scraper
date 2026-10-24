@@ -18,7 +18,7 @@ from datetime import datetime
 from typing import Any
 
 from curl_cffi import requests as cffi
-from selectolax.parser import HTMLParser
+from selectolax.lexbor import LexborHTMLParser
 
 from models import Job
 
@@ -72,7 +72,7 @@ def _is_cf_challenge(response: Any) -> bool:
 
 
 def _parse(html: str) -> list[Job]:
-    parser = HTMLParser(html)
+    parser = LexborHTMLParser(html)
     nd = parser.css_first("script#__NEXT_DATA__")
     if nd is None:
         return []

@@ -25,3 +25,4 @@ class Job:
 class Profile:
     name: str
     keywords: list[str] = field(default_factory=list)
+    seniority: tuple[str, ...] = ("junior", "middle", "senior")

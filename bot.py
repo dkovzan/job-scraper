@@ -14,6 +14,7 @@ to escape user-supplied profile names or keywords when echoing them back.
 from __future__ import annotations
 
 import logging
+import re
 from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
@@ -33,21 +34,28 @@ _KNOWN_COMMANDS = frozenset({"start", "help", "list", "subscribe", "unsubscribe"
 _START_MSG = (
     "Hi! I send Telegram alerts for new job postings that match your profile.\n\n"
     "Set up your first profile, e.g.:\n"
-    "/subscribe ui-ux UI Designer, UX Designer, Product Designer\n\n"
+    "/subscribe ui-ux UI Designer, UX Designer, Product Designer\n"
+    "Optionally add seniority=junior,middle or seniority=senior.\n\n"
     "Type /help for the full command list."
 )
 
 _HELP_MSG = (
     "Commands:\n"
     "/list — show your profiles\n"
-    "/subscribe <name> <kw>, <kw>, ... — add or replace a profile\n"
+    "/subscribe <name> <kw>, <kw>, ... [seniority=all|junior,middle,senior] — "
+    "add or replace a profile\n"
     "/unsubscribe <name> — remove a profile\n"
     "/whoami — show your chat ID\n"
     "/help — this message"
 )
 
-_USAGE_SUBSCRIBE = "Usage: /subscribe <name> <keyword>, <keyword>, ..."
+_USAGE_SUBSCRIBE = (
+    "Usage: /subscribe <name> <keyword>, <keyword>, ... "
+    "[seniority=all|junior,middle,senior]"
+)
 _USAGE_UNSUBSCRIBE = "Usage: /unsubscribe <name>"
+_ALL_SENIORITY = ("junior", "middle", "senior")
+_SENIORITY_LABELS = {"junior": "junior", "middle": "middle", "senior": "senior"}
 
 
 @dataclass(frozen=True)
@@ -149,11 +157,12 @@ def _not_allowed_reply(chat_id: str) -> str:
 def _list_reply(chat_id: str, subscriptions: dict[str, list[Profile]]) -> str:
     profiles = subscriptions.get(chat_id, [])
     if not profiles:
-        return "No active profiles. Use /subscribe <name> <kw>, <kw>, ... to start."
+        return f"No active profiles. {_USAGE_SUBSCRIBE}"
     lines = ["Your profiles:"]
     for p in profiles:
         kws = ", ".join(p.keywords)
-        lines.append(f"- {p.name}: {kws}")
+        seniority = _format_seniority(p.seniority)
+        lines.append(f"- {p.name}: {kws} [seniority={seniority}]")
     return "\n".join(lines)
 
 
@@ -161,19 +170,21 @@ def _handle_subscribe(cmd: Command, subscriptions: dict[str, list[Profile]]) -> 
     parsed = _parse_subscribe_args(cmd.args)
     if parsed is None:
         return Reply(cmd.chat_id, _USAGE_SUBSCRIBE)
-    name, keywords = parsed
+    name, keywords, seniority = parsed
     profiles = subscriptions.setdefault(cmd.chat_id, [])
     for i, existing in enumerate(profiles):
         if existing.name == name:
-            profiles[i] = Profile(name=name, keywords=keywords)
+            profiles[i] = Profile(name=name, keywords=keywords, seniority=seniority)
             return Reply(
                 cmd.chat_id,
-                f"Updated {name} ({len(keywords)} keyword{'s' if len(keywords) != 1 else ''}).",
+                f"Updated {name} ({len(keywords)} keyword"
+                f"{'s' if len(keywords) != 1 else ''}; seniority={_format_seniority(seniority)}).",
             )
-    profiles.append(Profile(name=name, keywords=keywords))
+    profiles.append(Profile(name=name, keywords=keywords, seniority=seniority))
     return Reply(
         cmd.chat_id,
-        f"Subscribed to {name} ({len(keywords)} keyword{'s' if len(keywords) != 1 else ''}). "
+        f"Subscribed to {name} ({len(keywords)} keyword"
+        f"{'s' if len(keywords) != 1 else ''}; seniority={_format_seniority(seniority)}). "
         "Matches will start arriving on the next tick.",
     )
 
@@ -190,8 +201,8 @@ def _handle_unsubscribe(cmd: Command, subscriptions: dict[str, list[Profile]]) -
     return Reply(cmd.chat_id, f"No profile named {name}.")
 
 
-def _parse_subscribe_args(args: str) -> tuple[str, list[str]] | None:
-    """First token = profile name; remainder = comma-separated keywords."""
+def _parse_subscribe_args(args: str) -> tuple[str, list[str], tuple[str, ...]] | None:
+    """Parse a profile name, comma-separated keywords, and optional final seniority setting."""
     args = args.strip()
     if not args:
         return None
@@ -199,10 +210,26 @@ def _parse_subscribe_args(args: str) -> tuple[str, list[str]] | None:
     if len(parts) < 2:
         return None
     name = parts[0]
-    keywords = [k.strip() for k in parts[1].split(",") if k.strip()]
+    keyword_text = parts[1]
+    seniority = _ALL_SENIORITY
+    seniority_option = re.search(r"\s+seniority\s*=\s*(.*?)\s*$", keyword_text, re.IGNORECASE)
+    if seniority_option is not None:
+        keyword_text = keyword_text[: seniority_option.start()].rstrip()
+        values = [value.strip().lower() for value in seniority_option.group(1).split(",")]
+        if values == ["all"]:
+            seniority = _ALL_SENIORITY
+        elif values and all(value in _SENIORITY_LABELS for value in values):
+            seniority = tuple(dict.fromkeys(values))
+        else:
+            return None
+    keywords = [k.strip() for k in keyword_text.split(",") if k.strip()]
     if not keywords:
         return None
-    return name, keywords
+    return name, keywords, seniority
+
+
+def _format_seniority(seniority: tuple[str, ...]) -> str:
+    return "all" if seniority == _ALL_SENIORITY else ",".join(seniority) or "none"
 
 
 # ----------- _process_updates (pure) -----------
