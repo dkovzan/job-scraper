@@ -1,21 +1,6 @@
 {
   "549849116": {
-    "profiles": [
-      {
-        "name": "ui-ux",
-        "keywords": [
-          "UI Designer",
-          "UX Designer",
-          "UI/UX",
-          "UX/UI",
-          "Product Designer",
-          "Projektant UX",
-          "Projektant UI",
-          "Projektant interfejsów",
-          "Designer produktu"
-        ]
-      }
-    ]
+    "profiles": []
   },
   "547533994": {
     "profiles": [
@@ -31,6 +16,11 @@
           "Projektant UI",
           "Projektant interfejsów",
           "Designer produktu"
+        ],
+        "seniority": [
+          "junior",
+          "middle",
+          "senior"
         ]
       }
     ]
